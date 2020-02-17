@@ -10,8 +10,8 @@
     function __construct() {
         $this->host = "localhost";
         $this->user = "root";
-        $this->password = "theROOTpass$%";
-        $this->dbname = "Inventory";
+        $this->password = "theROOTpass$%";//Cambiar según tengan configurado.
+        $this->dbname = "pharmacydb";
 
         try {
           // ultimo atributo, evitar errores con las tildes y las Ñ en la base de datos..

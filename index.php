@@ -17,6 +17,7 @@
       } else {
         include 'views/login.php';
       }
+      // echo md5('asdf');
       ?>
   </body>
 </html>

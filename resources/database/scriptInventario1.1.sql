@@ -14,16 +14,16 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `pharmacydb` DEFAULT CHARACTER SET utf8 ;
+USE `pharmacydb` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`client`
+-- Table `pharmacydb`.`client`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`client` (
-  `idClient` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`client` (
+  `idClient` INT AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `surnames` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
   `identificationCard` VARCHAR(45) NOT NULL,
   `gender` VARCHAR(45) NOT NULL,
   `birthDate` DATE NOT NULL,
@@ -34,28 +34,31 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`user`
+-- Table `pharmacydb`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`user` (
-  `idPerson` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`user` (
+  `idPerson` INT AUTO_INCREMENT NOT NULL,
   `identificationCard` VARCHAR(45) NOT NULL,
   `name` VARCHAR(45) NOT NULL,
-  `surnames` VARCHAR(45) NOT NULL,
-  `correo` VARCHAR(45) NOT NULL,
-  `user` VARCHAR(45) NOT NULL,
+  `lastname` VARCHAR(45) NOT NULL,
+  `email` VARCHAR(45) NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idPerson`),
   UNIQUE INDEX `identificationCard_UNIQUE` (`identificationCard` ASC),
-  UNIQUE INDEX `correo_UNIQUE` (`correo` ASC),
-  UNIQUE INDEX `user_UNIQUE` (`user` ASC))
+  UNIQUE INDEX `correo_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `user_UNIQUE` (`username` ASC))
 ENGINE = InnoDB;
 
+-- Default user
+INSERT INTO user(identificationCard, name, lastname, email, username, password)
+  values('1234', 'user name', 'user lastname', 'user@mail.com', 'username', '912ec803b2ce49e4a541068d495ab570');
 
 -- -----------------------------------------------------
--- Table `mydb`.`sale`
+-- Table `pharmacydb`.`sale`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sale` (
-  `idSale` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`sale` (
+  `idSale` INT AUTO_INCREMENT NOT NULL,
   `saleDate` DATE NULL,
   `totalValue` DOUBLE NULL,
   `client_idClient` INT NOT NULL,
@@ -78,10 +81,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`laboratory`
+-- Table `pharmacydb`.`laboratory`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`laboratory` (
-  `idlaboratory` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`laboratory` (
+  `idlaboratory` INT AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`idlaboratory`),
@@ -90,10 +93,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`medicine`
+-- Table `pharmacydb`.`medicine`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`medicine` (
-  `idMedicine` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`medicine` (
+  `idMedicine` INT AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NOT NULL,
   `expirationDate` DATE NOT NULL,
@@ -120,10 +123,10 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`sale detail`
+-- Table `pharmacydb`.`sale detail`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`sale detail` (
-  `idSaleDetail` INT NOT NULL,
+CREATE TABLE IF NOT EXISTS `pharmacydb`.`sale detail` (
+  `idSaleDetail` INT AUTO_INCREMENT NOT NULL,
   `cuantity` INT NOT NULL,
   `medicine_idMedicine` INT NOT NULL,
   `sale_idSale` INT NOT NULL,
