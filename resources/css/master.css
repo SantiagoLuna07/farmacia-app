@@ -1,0 +1,12 @@
+body {
+  background-color: #dae0de;
+}
+
+.card-header {
+  background-color: #212529;
+  color: #ffffff;
+}
+
+.no-display {
+  display: none;
+}

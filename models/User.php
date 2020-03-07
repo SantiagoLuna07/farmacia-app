@@ -4,17 +4,17 @@
    */
   class User {
     private $id;
-    private $identificationCard;
+    private $idCard;
     private $name;
     private $lastname;
     private $email;
     private $username;
     private $password;
 
-    function __construct($id, $identificationCard, $name, $lastname, $email,
+    function __construct($id, $idCard, $name, $lastname, $email,
       $username, $password) {
         $this->id= $id;
-        $this->identificationCard= $identificationCard;
+        $this->idCard= $idCard;
         $this->name= $name;
         $this->lastname= $lastname;
         $this->email= $email;
@@ -22,16 +22,16 @@
         $this->password= $password;
     }
 
-    public function getid() {
-      return $this->email;
+    public function getId() {
+      return $this->id;
     }
 
-    public function getIdentificationCard() {
-      return $this->identificationCard;
+    public function getIdCard() {
+      return $this->idCard;
     }
 
-    public function setIdentificationCard($identificationCard) {
-      $this->identificationCard = $identificationCard;
+    public function setIdCard($idCard) {
+      $this->idCard = $idCard;
     }
 
     public function getName() {
