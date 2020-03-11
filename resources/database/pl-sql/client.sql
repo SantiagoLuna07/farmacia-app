@@ -8,7 +8,7 @@ CREATE FUNCTION save_client(
 ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
 BEGIN
   DECLARE res INT DEFAULT 0;
-  IF NOT EXISTS(SELECT idClient FROM users WHERE idCard = v_idCard)
+  IF NOT EXISTS(SELECT idClient FROM clients WHERE idCard = v_idCard)
     THEN
       INSERT INTO clients(name, lastname, idCard, gender, birthDate)
       VALUES(v_name, v_lastname, v_idCard, v_gender, v_birtDate);
@@ -40,9 +40,9 @@ BEGIN
   DECLARE res INT DEFAULT 0;
   IF EXISTS(SELECT idClient FROM clients WHERE idClient = v_idClient)
     THEN
-      UPDATE clients SET name= v_name, lastame= v_lastname, gender= v_gender,
+      UPDATE clients SET name= v_name, lastname= v_lastname, gender= v_gender,
         birthDate= v_birtDate
-        WHERE idClient= v_idClient;
+        WHERE idClient = v_idClient;
       SET res = 1;
   END IF;
   RETURN res;

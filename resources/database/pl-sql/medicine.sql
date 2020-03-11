@@ -11,14 +11,11 @@ CREATE FUNCTION save_medicine(
 ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
 BEGIN
   DECLARE res INT DEFAULT 0;
-  IF NOT EXISTS(SELECT idClient FROM users WHERE idCard = v_idCard)
-    THEN
-      INSERT INTO users(name, description, expirationDate, quantity,
-        fabricationDate, price, laboratory_idlaboratory, user_idUser)
-        VALUES(v_name, v_description, v_expirationDate, v_quantity, v_fabricationDate,
-          v_price, v_labId, v_userId);
-      SET res = 1;
-  END IF;
+    INSERT INTO medicines(name, description, expirationDate, quantity,
+      fabricationDate, price, laboratory_idlaboratory, user_idUser)
+      VALUES(v_name, v_description, v_expirationDate, v_quantity, v_fabricationDate,
+        v_price, v_labId, v_userId);
+    SET res = 1;
   RETURN res;
 END
 //
@@ -30,7 +27,7 @@ BEGIN
   SELECT m.idMedicine, m.name, m.description, m.expirationDate, m.quantity, m.fabricationDate,
     m.price, l.name, u.username FROM medicines m
     JOIN laboratories l ON m.laboratory_idlaboratory = l.idlaboratory
-    JOIN users ON m.user_idUser = u.idUser;
+    JOIN users u ON m.user_idUser = u.idUser;
 END
 //
 DELIMITER ;
@@ -82,8 +79,16 @@ BEGIN
 SELECT m.idMedicine, m.name, m.description, m.expirationDate, m.quantity, m.fabricationDate,
   m.price, l.name, u.username FROM medicines m
   JOIN laboratories l ON m.laboratory_idlaboratory = l.idlaboratory
-  JOIN users ON m.user_idUser = u.idUser
+  JOIN users u ON m.user_idUser = u.idUser
   WHERE m.idMedicine= v_idMedicine;
+END
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE read_laboratories()
+BEGIN
+  SELECT idlaboratory, name FROM laboratories;
 END
 //
 DELIMITER ;
