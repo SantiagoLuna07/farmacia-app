@@ -1,12 +1,40 @@
 body {
+ background-image: url('http://getwallpapers.com/wallpaper/full/b/0/6/397330.jpg');
   background-color: #dae0de;
+  font-family: 'Numans', sans-serif;
 }
 
 .card-header {
   background-color: #212529;
   color: #ffffff;
 }
+.modal-header{
+      padding:9px 15px;
+     border-bottom:1px solid #eee;
+     background-color: #c5f2fa ;
+}
 
 .no-display {
   display: none;
 }
+
+.containerL{
+    padding: 5%;
+    height: 100%;
+    
+    }
+
+.cardL{
+   align-content: center;
+    height: 350px;
+    width: 450px;
+    background-color: #ffffff;
+   
+    }
+.card-footer{
+  background-color:#aababd;
+}
+   
+.modal-footer{
+ background-color:#aababd; 
+}   

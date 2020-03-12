@@ -30,9 +30,11 @@ function create() {
         // console.log(resServer);
         let res = JSON.parse(resServer);
         if (res.status === 200) {
+          toastr.success('Registrado Con Exito');
           read();
           clean();
         } else {
+          toastr.error('ERROR','No se pudo guardar');
           console.log('0');
         }
         $('#progressbarr').addClass('no-display');
@@ -42,8 +44,11 @@ function create() {
         console.error('Exception on server:', errorThrown);
       }
     });
-  }
+  }else{
+    toastr.info('Verifique los datos ingresados','ADVERTENCIA');    }
+
 }
+
 
 function read () {
   $.ajax({
@@ -55,7 +60,15 @@ function read () {
       // console.log(res);
       let data = JSON.parse(res.data);
 
-      let list = '';
+      let list = "<thead><tr>\n\
+                      <th>Codigo</th>\n\
+                      <th>Cedula</th>\n\
+                      <th>Nombre Completo</th>\n\
+                      <th>Correo</th>\n\
+                      <th>Opciones</th>\n\
+                  </tr></thead>";
+
+     list+= "<tbody>"
       for (element of data) {
         list += '<tr>';
         list += `<td>${element.idUser}</td>`;
@@ -63,13 +76,16 @@ function read () {
         list += `<td>${element.name} ${element.lastname}</td>`;
         list += `<td>${element.email}</td>`;
         list += '<td>';
-        list += `<a onclick="readById(${element.idUser})" class="btn btn-primary`
+        list += `<a onclick="readById(${element.idUser})" class="btn btn-dark`
           +' btn-block" data-toggle="modal" data-target="#updelModal" '
           +'style="color: #ffffff">mas opciones..</a>';
         list += '</td>';
         list += '</tr>';
-        $('#list').html(list);
+       
       }
+      list+= "<tbody>"
+      $('#list').html(list);
+      $('#list').dataTable();
 
     },
     error: function (jqXRH, textStatus, errorThrown) {
@@ -135,9 +151,11 @@ function update() {
     success: function (resServer) {
       let res = JSON.parse(resServer);
       if (res.status === 200) {
+        toastr.success('Modificado Con Exito');
         read();
       } else {
         console.log('0');
+        toastr.error('ERROR','No se pudo Modificar');
       }
       $('#progress').addClass('no-display');
     },
@@ -164,8 +182,10 @@ function deletee() {
       let res = JSON.parse(resServer);
       if (res.status === 200) {
         read();
+        toastr.success('Se elimino Con Exito');
       } else {
         console.log('0');
+        toastr.error('ERROR','No se pudo Eliminar');
       }
       $('#progress').addClass('no-display');
     },
@@ -211,3 +231,4 @@ function clean() {
   $('#password2C').removeClass('is-valid');
   $('#password2C').removeClass('is-invalid');
 }
+
