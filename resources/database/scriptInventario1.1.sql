@@ -99,7 +99,7 @@ CREATE TABLE IF NOT EXISTS `pharmacydb`.`medicines` (
   `idMedicine` INT AUTO_INCREMENT NOT NULL,
   `name` VARCHAR(45) NOT NULL,
   `description` VARCHAR(200) NOT NULL,
-  `expirationDate` DATE NOT NULL,
+  `expirationDate` VARCHAR(45) NOT NULL,
   `quantity` INT NOT NULL,
   `fabricationDate` VARCHAR(45) NOT NULL,
   `price` DOUBLE NOT NULL,

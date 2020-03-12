@@ -14,7 +14,7 @@
 
   switch ($type) {
     case 'create':
-      $gdao->executeFunction('save_client', array($idCard, $name, $lastname,
+      $gdao->executeFunction('save_client', array($name, $lastname, $idCard,
         $gender, $birthDate));
     break;
 
@@ -23,7 +23,7 @@
     break;
 
     case 'update':
-      $gdao->executeFunction('update_client', array($id, $idCard, $name, $lastname,
+      $gdao->executeFunction('update_client', array($id, $name, $lastname, $idCard,
         $gender, $birthDate));
     break;
 
@@ -31,7 +31,7 @@
       $gdao->executeFunction('delete_client',array($id));
       break;
     case 'readById':
-      $gdao->executeProcedure('read_by_id_user',array($id));
+      $gdao->executeProcedure('read_by_id_client',array($id));
       break;
 
   default:
