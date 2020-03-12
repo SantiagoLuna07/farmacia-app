@@ -1,11 +1,11 @@
 <head>
   <script src="resources/js/login-action.js" charset="utf-8"></script>
 </head>
-<body>
-  <div class="container">
+<body >
+  <div class="containerL">
     <div class="row">
       <div class="col-md-8 mx-auto pt-3">
-        <div class="card">
+        <div class="cardL">
           <div class="card-header">
             <h4 class="card-title">Ingresar</h4>
           </div>
@@ -25,8 +25,8 @@
             </div>
             <div class="card-footer text-right">
               <input type="hidden" name="type" id="type">
-              <button type="submit" class="btn btn-success">Ingresar</button>
-              <a href="index.php" class="btn btn-danger">Cancelar</a>
+              <button type="submit" class="btn btn-primary">Ingresar</button>
+              <a href="index.php" class="btn btn-dark">Cancelar</a>
             </div>
           </form>
         </div>

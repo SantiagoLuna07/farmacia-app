@@ -1,12 +1,22 @@
 <head>
-  <script src="resources/js/users-action.js" charset="utf-8"></script>
+<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
+<link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+<script src="resources/js/users-action.js" charset="utf-8"></script>
+<script src="https://kit.fontawesome.com/34f588a8ba.js" crossorigin="anonymous"></script>
+<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
+<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
+    <link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+
 </head>
 <body>
   <div class="row">
     <div class="col-md-8 mx-auto">
       <div class="card">
         <div class="card-header">
-          <h5>Admin. de usuarios</h5>
+        <i class="fas fa-users-cog fa-7x"></i>
+          <h5>Gestión Usuarios</h5>
         </div>
         <form>
           <div class="card-body">
@@ -41,7 +51,7 @@
                 </div>
                 <div class="form-group">
                   <label for="">Contreseña:</label>
-                  <input type="password" id="passwordC" class="form-control"
+                  <input type="pa ssword" id="passwordC" class="form-control"
                     placeholder="Ingresa la Contreseña">
                 </div>
                 <div class="form-group">
@@ -59,9 +69,9 @@
           </div>
           <div class="card-footer text-right">
             <a id="create" class="btn btn-success"
-              style="color: #ffffff">Registrar</a>
+              style="color: #ffffff"> <i class="fas fa-save fa-2x"></i></a>
             <a id="cancel" class="btn btn-danger"
-              style="color: #ffffff">Cancelar</a>
+              style="color: #ffffff"><i class="fas fa-broom fa-2x"></i></a>
           </div>
         </form>
       </div>
@@ -70,7 +80,8 @@
   <div class="row">
     <div class="col-md-12 mx-auto">
       <div class="card mt-2 p-4">
-          <table class="table">
+      <table class="table">
+          <table id="list" class='display' cellspacing='0' width='100%'>
             <thead class="thead-dark">
               <tr>
                 <th colspan="7" scope="col" class="text-center">
@@ -81,8 +92,9 @@
                 <th scope="col">Codigo</th>
                 <th scope="col">Cedula</th>
                 <th scope="col">Nombre Completo</th>
+               <!-- <th scope="col">Apellidos</th>-->
                 <th scope="col">Correo Electronico</th>
-                <th scope="col">Opciones</th>
+                 <th scope="col">Opciones</th>
               </tr>
             </thead>
             <tbody id="list">
@@ -98,7 +110,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Opciones</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Informacion Del Usuario</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -140,4 +152,56 @@
       </div>
     </div>
   </div>
+  <!--
+<script>
+  $(document).on("ready",function(){
+  read();
+});
+ var listar=function(){
+   var table=$("#list").DataTable({
+     "ajax":{
+      "method":"POST",
+      "url":"users.php"
+     },
+     "columns":[
+       {"data":"Codigo"},
+       {"data":"Cedula"},
+       {"data":"Nombre Completo"},
+       {"data":"Correo Electronico"},
+       {"data":"Opciones"}
+     ],
+     "language":idioma_espanol
+    });
+ }
+
+ var idioma_espanol= {
+  "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                  "sFirst":    "Primero",
+                  "sLast":     "Último",
+                  "sNext":     "Siguiente",
+                  "sPrevious": "Anterior"
+              },
+              "oAria": {
+                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              },
+              "buttons": {
+                  "copy": "Copiar",
+                  "colvis": "Visibilidad"
+              }
+} 
+
+</script>-->
 </body>
