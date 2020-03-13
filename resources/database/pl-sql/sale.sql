@@ -7,7 +7,40 @@ CREATE FUNCTION save_sale(
   v_medicines VARCHAR(2000)
 ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
 BEGIN
+  DECLARE res INT DEFAULT 0;
+  DECLARE v_medicine VARCHAR(500);
+  DECLARE v_idSale INT;
+  DECLARE v_idMedicine INT;
+  DECLARE v_quantity INT;
 
+  INSERT INTO sales(saleDate, totalValue, client_idClient, user_idUser)
+    VALUES (v_saleDate, v_totalValue, v_cliId, v_userId);
+
+  SET v_idSale = (SELECT idSale
+      FROM sales
+      WHERE saleDate = v_saleDate
+      AND client_idClient = v_cliId
+      AND user_idUser = v_userId);
+
+  WHILE(LOCATE(',', v_medicines) > 0) DO
+    SET v_medicine = ELT(1, v_medicines);
+    SET v_medicines = SUBSTRING(v_medicines, LOCATE(',', v_medicines) + 1);
+
+    WHILE(LOCATE(',', v_medicine) > 0) DO
+      SET v_idMedicine = ELT(1, v_medicine);
+      SET v_quantity = SUBSTRING(v_medicine, LOCATE(',', v_medicine) + 1);
+      SET v_idMedicine = ELT(1, v_medicine);
+
+      IF v_medicine <> ',' THEN
+        INSERT INTO sale_detatils(cuantity, medicine_idMedicine, sale_idSale)
+          VALUES(v_quantity, v_idMedicine, v_idSale);
+      END IF;
+    END WHILE;
+  END WHILE;
+
+  SET res = 1;
+
+  RETURN res;
 END
 //
 DELIMITER ;
