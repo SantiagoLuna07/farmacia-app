@@ -67,9 +67,7 @@
           <br>
           <div class="botones">
             <button type="button" class="btn btn-primary btn-lg" id="btnGuardar" >guardar</button>
-            <button type="button" class="btn btn-success btn-lg" id="btnModificar" >Modificar</button>            
-            <button type="button" class="btn btn-danger btn-lg" id="btnEliminar" >Eliminar</button>
-          </div>
+             </div>
           
           </form>
       </div>
@@ -131,11 +129,15 @@
         </div>
         <form>
           <div class="modal-body">             
-            <div class="form-group">
+             <div class="form-group">
+              <label for="idU">Codigo:</label>
+              <input type="text" id="idU" class="form-control" disabled>
+            </div>
             <div class="form-group">
                 <label for="idCardU">Cedula:</label>
                 <input type="number" id="idCardU" class="form-control">
               </div>
+              <div class="form-group">
               <label for="nameU">Nombre:</label>
               <input type="text" id="nameU" class="form-control" value="">
             </div>

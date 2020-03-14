@@ -138,6 +138,7 @@ function update() {
     lastname: $('#lastnameU').val(),
     email: $('#emailU').val(),
     username: $('#usernameU').val(),
+
     type: 'update'
   }
 
@@ -181,8 +182,9 @@ function deletee() {
     success: function (resServer) {
       let res = JSON.parse(resServer);
       if (res.status === 200) {
-        read();
+       
         toastr.success('Se elimino Con Exito');
+        read();
       } else {
         console.log('0');
         toastr.error('ERROR','No se pudo Eliminar');
