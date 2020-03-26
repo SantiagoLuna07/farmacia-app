@@ -1,6 +1,4 @@
 <?php
-
-  require '../models/User.php';
   require '../DAOs/GenericDAO.php';
 
   $id = isset($_POST['id'])? $_POST['id'] : '';
@@ -13,14 +11,10 @@
   $type = isset($_POST['type'])? $_POST['type'] : '';
 
   session_start();
-
-  $user = new User($id, $idCard, $name, $lastname, $email,
-    $username, $password);
   $gdao = new GenericDAO();
 
   switch ($type) {
     case 'login':
-      // $user->setPassword(md5($user->getPassword()));
       if($gdao->login('login_user', array($email, md5($password))) != 0) {
         header('location: ../index.php?success-msg=ingresó');
       } else {

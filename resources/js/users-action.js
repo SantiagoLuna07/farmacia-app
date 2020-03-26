@@ -27,7 +27,7 @@ function create() {
       },
       data: user,
       success: function (resServer) {
-        // console.log(resServer);
+         console.log(resServer);
         let res = JSON.parse(resServer);
         if (res.status === 200) {
           toastr.success('Registrado Con Exito');

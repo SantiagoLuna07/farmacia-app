@@ -2,23 +2,98 @@ $(document).ready(function(){
   loadLaboratories();
     read();
     $("#create").click(create);
-  /* $("#update").click(update);
-    $("#delete").click(deletee);*/
+   $("#update").click(modificarr);
+    $("#delete").click(eliminar);
 
 
 });
 
+function modificarr() {
+  let user = {
+    id: $('#idU').val(),
+    name: $('#nameU').val(),
+    description: $('#descriptionU').val(),
+    expirationDate: $('#txtFechaExpU').val(),
+    quantity: $('#quantityU').val(),
+    fabricationDate: $('#txtFechaFaU').val(),
+    labId: $('#nameLabU').val(),
+    price: $('#priceU').val(),
+    userId: $('#priceU').val(),
+    type: 'update'
+  }
+
+  $.ajax({
+    url: 'controllers/MedicineCtrl.php',
+    method: 'POST',
+    beforeSend: function () {
+      $('#progress').removeClass('no-display');
+    },
+    data: user,
+    success: function (resServer) {
+      let res = JSON.parse(resServer);
+      if (res.status === 200) {
+        toastr.success('Modificado Con Exito');
+        read();
+      } else {
+        console.log('0');
+        console.log(resServer)
+        toastr.error('ERROR','No se pudo Modificar');
+      }
+      $('#progress').addClass('no-display');
+    },
+    error: function (jqXRH, textStatus, errorThrown) {
+      console.error('error on server: ', textStatus);
+      console.error('Exception on server:', errorThrown);
+    }
+  });
+}
+
+
+function eliminar() {
+  let country = {
+    id: $('#idU').val(),
+    type: 'delete'
+  };
+  $.ajax({
+    url: 'controllers/MedicineCtrl.php',
+    method: 'POST',
+    beforeSend: function () {
+      $('#progress').removeClass('no-display');
+    },
+    data: country,
+    success: function (resServer) {
+      let res = JSON.parse(resServer);
+      if (res.status === 200) {
+        read();
+        cleanModal();
+        toastr.success('Se elimino Con Exito');
+        read();
+      } else {
+        console.log('0');
+        toastr.error('ERROR','No se pudo Eliminar');
+      }
+      $('#progress').addClass('no-display');
+    },
+    error: function (jqXRH, textStatus, errorThrown) {
+      console.error('error on server: ', textStatus);
+      console.error('Exception on server:', errorThrown);
+    }
+  });
+}
+
+
+
 function create() {
   let user = {
     idMedicine:$("#txtIdMedicine").val(),
-      name:$("#txtNombre").val(),
+      name:$("#txtNombreM").val(),
       description:$("#txtDescripcion").val(),
       expirationDate:$("#txtFecha").val(),
       quantity:$("#txtCantidad").val(),
       fabricationDate:$("#txtFechaFabricacion").val(),
       price:$("#txtPrecio").val(),
       labId:$("#txtLaboratorio option:selected").val(),
-    // userId:$("#txtPersona").val(),
+     userId:$("#txtPersona").val(),
       type:'create'
   }
 
@@ -39,6 +114,7 @@ function create() {
           toastr.success('Registrado Con Exito');
           read();
           clean();
+          
         } else {
           toastr.error('ERROR','No se pudo guardar');
          console.log('0');
@@ -73,6 +149,9 @@ function read () {
                     <th>Fecha Fabricacion</th>\n\
                     <th>Laboratorio</th>\n\
                     <th>Precio</th>\n\
+                    <th>Cantidad</th>\n\
+                    <th>Usuario</th>\n\
+                    <th>Opciones</th>\n\
         </tr></thead>";
 
         list+= "<tbody>"
@@ -83,14 +162,17 @@ function read () {
           list += `<td>${element.description}</td>`;
           list += `<td>${element.expirationDate}</td>`;
           list += `<td>${element.fabricationDate}</td>`;
-          list += `<td>${element.name}</td>`;
+          list += `<td>${element.labId}</td>`;
           list += `<td>${element.price}</td>`;
-          /*
+          list += `<td>${element.quantity}</td>`;
+          list += `<td>${element.userId}</td>`;
+         
+          
           list += '<td>';
-          list += `<a onclick="readById(${element.idClient})" class="btn btn-dark`
+          list += `<a onclick="readById(${element.idMedicine})" class="btn btn-dark`
             +' btn-block" data-toggle="modal" data-target="#updelModal" '
             +'style="color: #ffffff">mas opciones..</a>';
-          list += '</td>';*/
+          list += '</td>';
           list += '</tr>';
           
         }
@@ -106,6 +188,45 @@ function read () {
       }
     });
   }
+
+  function readById(id) {
+    $.ajax({
+      url: 'controllers/MedicineCtrl.php',
+      method: 'POST',
+      beforeSend: function () {
+        $('#progressbarr').removeClass('no-display');
+      },
+      data: {id: id, type: 'readById'},
+      success: function (resServer) {
+        let res = JSON.parse(resServer);
+  
+        if (res.status === 200) {
+          let data = JSON.parse(res.data);
+          
+          for(element of data) {
+            $('#idU').val(element.idMedicine);
+            $('#nameU').val(element.name);
+            $('#descriptionU').val(element.description);
+           $('#txtFechaExpU').val(element.expirationDate);
+            $('#txtFechaFaU').val(element.fabricationDate);
+            $('#nameLabU').val(element.labId);
+            $('#quantityU').val(element.quantity);
+            $('#priceU').val(element.price);
+            $('#userIdU').val(element.userId);
+            $('#progressbarr').addClass('no-display');
+          }
+          $('#progressbarr').addClass('no-display');
+        } else {
+          console.log('0');
+        }
+      },
+      error: function (jqXRH, textStatus, errorThrown) {
+        console.error('error on server: ', textStatus);
+        console.error('Exception on server:', errorThrown);
+      }
+    });
+  }
+
 
   function loadLaboratories() {
     $.ajax({
@@ -161,6 +282,9 @@ function read () {
         console.error('Exception on server:', errorThrown);
       }
     });
+
+    
+    
   }
   function clean() {
     $("#txtNombre").val("");
@@ -176,9 +300,12 @@ function read () {
 
   function cleanModal(){
     $("#idU").val("");
-    $("#idCardU").val("");
     $("#nameU").val("");
-    $("#lastnameU").val("");
-    $("#genderU").val(0);
-    $("#txtFechaU").val("");
+    $("#descriptionU").val("");
+    $("#quantityU").val("");
+    $("#txtFechaExpU").val("");
+    $("#txtFechaFaU").val("");
+    $("#nameLabU").val(0);
+    $("#priceU").val("");
+
   }

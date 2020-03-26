@@ -19,7 +19,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Registro Clientes</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Registro Inventario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -27,7 +27,7 @@
       <div class="modal-body">
                <input type="text" class="form-control" id="txtIdMedicine" style="display: none" value="" >
                   <label >Nombre del Medicamento</label>
-                    <input type="text" class="form-control" id="txtNombre" placeholder="">
+                    <input type="text" class="form-control" id="txtNombreM" placeholder="">
                       <label >Descripcion</label>
                         <input type="text" class="form-control" id="txtDescripcion" placeholder="" >
                           <label >Fecha Expiracion</label>
@@ -62,8 +62,8 @@
                                                         <option value="0">Seleccione un Empleado</option>
 
                                                 </select>
-                                              </div>
-                                              <input type="number" class="form-control" id="txtPersona" placeholder="" > --> 
+                                              </div>--> 
+                                              <input type="number" class="form-control" id="txtPersona" placeholder="" > 
 
            </div>
     
@@ -84,7 +84,7 @@
   </div>
 </div>
           
-<div class="col-md-12 mx-auto">
+<div class="col-md-15 mx-auto">
       <div class="card mt-2 p-4">
       <table class="table">
          <table id="list" class='display' cellspacing='0' width='100%'>
@@ -100,8 +100,12 @@
                 <th scope="col">Descripcion</th>
                 <th scope="col">fecha de Expiracion</th>
                 <th scope="col">fecha de Fabricacion</th>
-                <th scope="col">precio</th>
                 <th scope="col">labotatorio</th>
+                <th scope="col">precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Opciones</th>
+               
                </tr>
          </thead>
            <tbody id="list">
@@ -111,4 +115,78 @@
      </div>
    </div>
  </div>
+
+ <div class="modal fade" id="updelModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Inventario</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form>
+          <div class="modal-body">             
+             <div class="form-group">
+              <label for="idU">Codigo:</label>
+              <input type="text" id="idU" class="form-control" disabled>
+            </div>
+             <div class="form-group">
+              <label for="nameU">Nombre Medicamento:</label>
+              <input type="text" id="nameU" class="form-control" value="">
+            </div>
+            <div class="form-group">
+              <label for="descriptionU">Descripcion:</label>
+              <input type="text" id="descriptionU" class="form-control" value="">
+            </div>
+            
+              <div class="form-group">
+                <label for="txtFechaExpU">Fecha Expiracion:</label>
+                <input type="text" width="276" id="txtFechaExpU" >
+                <script>
+              $('#txtFechaExpU').datepicker({
+                  uiLibrary: 'bootstrap4'
+            });
+          </script>
+              </div>
+              <div class="form-group">
+                <label for="txtFechaFaU">Fecha Fabricacion:</label>
+                <input id="txtFechaFaU" width="276" placeholder="11/21/1998" />           
+         <script>
+              $('#txtFechaFaU').datepicker({
+                  uiLibrary: 'bootstrap4'
+            });
+          </script>
+              </div>  
+              <div class="form-group">
+                <label for="nameLabU">Laboratorio:</label>
+                <input type="text" id="nameLabU" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="quantityU">Cantidad:</label>
+                <input type="text" id="quantityU" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="priceU">Precio:</label>
+                <input type="text" id="priceU" class="form-control">
+              </div>
+               <div class="form-group">
+              <label for="userIdU">Usuario:</label>
+              <input type="text" id="userIdU" class="form-control" >
+            </div>
+
+              
+            <hr>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="button" id="delete" class="btn btn-danger">Eliminar</button>
+            <button type="button" id="update" class="btn btn-success">Guardar Cambios</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
 </body>

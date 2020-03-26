@@ -1,5 +1,4 @@
 <?php
-  require '../models/Client.php';
   require '../DAOs/GenericDAO.php';
 
   $id = isset($_POST['id'])? $_POST['id'] : '';
