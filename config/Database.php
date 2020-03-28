@@ -10,7 +10,7 @@
     function __construct() {
         $this->host = "localhost";
         $this->user = "root";
-        $this->password = "theROOTpass$%";//Cambiar según tengan configurado.
+        $this->password = "";//Cambiar según tengan configurado.
         $this->dbname = "pharmacydb";
 
         try {
