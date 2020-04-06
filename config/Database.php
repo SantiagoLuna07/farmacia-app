@@ -29,6 +29,30 @@
     public function getConnect() {
       return $this->connect;
     }
+
+
+
+
+
+    public function ExecuteReport($query){
+        try {
+            // Le asigno la consulta SQL a la conexion de la base de datos /
+            $resultado = $this->getConnect()->prepare($query);
+           // Executo la consulta /
+            $resultado->execute();
+            // Si obtuvo resultados, entonces paselos a un vector /
+            if ($resultado->rowCount() > 0) {
+                $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);
+                return $vec;
+            }
+            
+        } catch (PDOException $exception) {
+            // Se captura el error de ejecucion SQL /
+            echo ' {
+                "res" : "' . $exception . '"
+            }';
+        }
+    }
   }
 
  ?>
