@@ -51,6 +51,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
+      <i class="fas fa-plus-square fa-5x"></i><br>
         <h5 class="modal-title" id="exampleModalLabel">Registro Inventario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
@@ -101,10 +102,11 @@
     
 
 <br>
-<div class="botones">
-  <button type="button" class="btn btn-primary btn-lg" id="create" >Guardar</button>
-  </div>
+
   <div class="modal-footer">
+  <div class="botones">
+  <button type="button" class="btn btn-success" id="create" >Guardar</button>
+  </div>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>   
 </div>
 </div>  

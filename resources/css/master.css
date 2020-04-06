@@ -17,7 +17,6 @@ body {
 .no-display {
   display: none;
 }
-
 .containerL{
     padding: 5%;
     height: 100%;
@@ -38,3 +37,14 @@ body {
 .modal-footer{
  background-color:#aababd; 
 }   
+.cardL{
+  margin: auto;
+  
+}
+
+h4{
+  text-align: center;
+}
+.card-footer{
+  background-color:white;
+}

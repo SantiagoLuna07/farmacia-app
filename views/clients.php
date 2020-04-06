@@ -29,13 +29,6 @@
 
 </form>
 
-<!--<form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
-  <input type="text" id="txtReportCsv" style="display:none" value="client()" name="tabla">
-  <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
-
-  <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
-
-</form>-->
 
 <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
 
@@ -106,23 +99,12 @@
           </script>
           <br>
           <div class="botones">
-            <button type="button" class="btn btn-primary btn-lg" id="btnGuardar" >guardar</button>
+            <button type="button" class="btn btn-success btn-lg" id="btnGuardar" >Guardar</button>
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button> 
              </div>
           
           </form>
       </div>
-     <!-- <div class="modal-footer">
-      
-            <a id="create" class="btn btn-success"
-              style="color: #ffffff"> <i class="fas fa-save fa-2x"></i></a>
-            <a id="btnModificar" class="btn btn-primary"
-              style="color: #ffffff"><i class="fas fa-edit fa-2x"></i></a>
-              <a id="btnEliminar" class="btn btn-danger"
-              style="color: #ffffff"><i class="fas fa-user-times fa-2x"></i></a>
-
-
-          
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>   -->   
     </div>
   </div>
 </div>
