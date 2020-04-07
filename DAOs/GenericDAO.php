@@ -19,7 +19,7 @@
     * @param $name Nombre de la funcion.
     * @param $dats Arreglo con los datoS.
     **/
-    public function executeFunction($name, $dats) {
+    public function executeFunction($name, $dats, $opcRes) {
         try {
           $query = "SELECT " . $name . "(";
           foreach ($dats as $dat) {
@@ -34,9 +34,17 @@
           $stmt = $this->connect->prepare($query);
 
           if ($stmt->execute()) {
-            echo json_encode(['status' => 200]);
+            if($opcRes == 1) {
+              return 1;
+            } else {
+              echo json_encode(['status' => 200]);
+            }
           } else {
-            echo json_encode(['status' => 409]);
+            if($opcRes == 1) {
+              return 0;
+            } else {
+              echo json_encode(['status' => 409]);
+            }
           }
         } catch(PDOException $pE) {
           echo json_encode(['status' => 409, 'Exception' => $pE]);
@@ -49,7 +57,7 @@
     * @param $name Nombre de la funcion.
     * @param $dats Arreglo con los datoS.
     **/
-    public function executeProcedure($name, $dats) {
+    public function executeProcedure($name, $dats, $opcRes) {
       try {
         $query;
         if ($dats != null) {
@@ -68,9 +76,17 @@
         $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         if ($data != null) {
-          echo json_encode(['status' => 200, 'data' => json_encode($data)]);
+          if($opcRes == 1) {
+            return $data;
+          } else {
+            echo json_encode(['status' => 200, 'data' => json_encode($data)]);
+          }
         } else {
-          echo json_encode(['status' => 404]);
+          if($opcRes) {
+            return null;
+          } else {
+            echo json_encode(['status' => 404]);
+          }
         }
       } catch(PDOException $pE) {
         echo json_encode(['status' => 409, 'Exception' => $pE]);

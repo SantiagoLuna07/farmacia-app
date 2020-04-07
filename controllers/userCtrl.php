@@ -24,7 +24,7 @@
 
       case 'create':
         $gdao->executeFunction('save_user', array($idCard, $name, $lastname,
-          $email, $username, md5($password)));
+          $email, $username, md5($password)), 0);
       break;
 
       case 'read':
@@ -33,11 +33,11 @@
 
       case 'update':
         $gdao->executeFunction('update_user', array($id, $idCard, $name, $lastname,
-          $email, $username));
+          $email, $username), 0);
       break;
 
       case 'delete':
-        $gdao->executeFunction('delete_user',array($id));
+        $gdao->executeFunction('delete_user',array($id), 0);
         break;
       case 'readById':
         $gdao->executeProcedure('read_by_id_user',array($id));

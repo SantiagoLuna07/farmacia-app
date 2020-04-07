@@ -17,7 +17,7 @@
   switch ($type) {
       case 'create':
         $gdao->executeFunction('save_medicine', array($name, $description,
-          $expirationDate, $quantity, $fabricationDate, $price, $labId, $userId));
+          $expirationDate, $quantity, $fabricationDate, $price, $labId, $userId), 0);
       break;
 
       case 'read':
@@ -26,11 +26,11 @@
 
       case 'update':
         $gdao->executeFunction('update_medicine',array($id, $name, $description,
-          $expirationDate, $quantity, $fabricationDate, $price, $labId, $userId));
+          $expirationDate, $quantity, $fabricationDate, $price, $labId, $userId), 0);
       break;
 
       case 'delete':
-        $gdao->executeFunction('delete_medicine', array($id));
+        $gdao->executeFunction('delete_medicine', array($id), 0);
         break;
 
       case 'readById':
