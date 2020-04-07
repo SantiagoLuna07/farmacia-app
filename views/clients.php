@@ -1,22 +1,14 @@
 <head>
-<!--script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-   
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>    
-<script src="https://kit.fontawesome.com/34f588a8ba.js" crossorigin="anonymous"></script>-->
 <script src="resources/js/client-action.js" charset="utf-8"></script>
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-    <link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+<link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+<link rel="stylesheet" href="resources/css/master.css"/>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
-    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
+   <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     
 </head>    
 <body>
@@ -25,9 +17,50 @@
     <div class="col-lg-5"  >
      
     
-<button type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
 <i class="fas fa-plus"></i> Registrar Clientes  
 </button>
+<br>
+<form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
+  <input type="text" id="txtReportC" style="display:none" value="client()" name="tabla">
+  <button style="margin: 5px"  type="submit" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+
+<i class="fas fa-file-pdf "></i> Exportar a PDF  </button>
+
+</form>
+
+
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 
+</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="client()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+
+
+
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -66,23 +99,12 @@
           </script>
           <br>
           <div class="botones">
-            <button type="button" class="btn btn-primary btn-lg" id="btnGuardar" >guardar</button>
+            <button type="button" class="btn btn-success btn-lg" id="btnGuardar" >Guardar</button>
+            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button> 
              </div>
           
           </form>
       </div>
-     <!-- <div class="modal-footer">
-      
-            <a id="create" class="btn btn-success"
-              style="color: #ffffff"> <i class="fas fa-save fa-2x"></i></a>
-            <a id="btnModificar" class="btn btn-primary"
-              style="color: #ffffff"><i class="fas fa-edit fa-2x"></i></a>
-              <a id="btnEliminar" class="btn btn-danger"
-              style="color: #ffffff"><i class="fas fa-user-times fa-2x"></i></a>
-
-
-          
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>   -->   
     </div>
   </div>
 </div>

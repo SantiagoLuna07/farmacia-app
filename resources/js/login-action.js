@@ -5,8 +5,12 @@ function sign(type) {
   if(valFieldsIn(email, password)) {
     document.getElementById('type').value = type;
     return true;
+   
+
   } else {
     return false;
+    
+
   }
 }
 
@@ -22,6 +26,7 @@ function valFieldsIn(email, password) {
 
   if (password.value === '') {
     password.className = 'form-control is-invalid';
+    
     res = false;
   } else {
     password.className = 'form-control is-valid';

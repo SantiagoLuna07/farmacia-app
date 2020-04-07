@@ -1,7 +1,7 @@
 body {
  background-image: url('http://getwallpapers.com/wallpaper/full/b/0/6/397330.jpg');
   background-color: #dae0de;
-  font-family: 'Numans', sans-serif;
+  /*font-family: 'Numans', sans-serif;*/
 }
 
 .card-header {
@@ -17,7 +17,6 @@ body {
 .no-display {
   display: none;
 }
-
 .containerL{
     padding: 5%;
     height: 100%;
@@ -38,3 +37,14 @@ body {
 .modal-footer{
  background-color:#aababd; 
 }   
+.cardL{
+  margin: auto;
+  
+}
+
+h4{
+  text-align: center;
+}
+.card-footer{
+  background-color:white;
+}

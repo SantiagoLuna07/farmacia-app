@@ -72,15 +72,56 @@
               style="color: #ffffff"> <i class="fas fa-save fa-2x"></i></a>
             <a id="cancel" class="btn btn-danger"
               style="color: #ffffff"><i class="fas fa-broom fa-2x"></i></a>
+              
           </div>
+          
         </form>
       </div>
     </div>
   </div>
+<form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
+  <input type="text" id="txtReportU" style="display:none" value="user()" name="tabla">
+  <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+
+<i class="fas fa-file-pdf "></i> Exportar a PDF  </button>
+
+</form>
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 
+</button>
+
+        <div class="modal" tabindex="-1" role="dialog" id="exampleModal1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="user()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>      
+
   <div class="row">
     <div class="col-md-12 mx-auto">
+    
       <div class="card mt-2 p-4">
+      
       <table class="table">
+      
           <table id="list" class='display' cellspacing='0' width='100%'>
             <thead class="thead-dark">
               <tr>
@@ -152,56 +193,4 @@
       </div>
     </div>
   </div>
-  <!--
-<script>
-  $(document).on("ready",function(){
-  read();
-});
- var listar=function(){
-   var table=$("#list").DataTable({
-     "ajax":{
-      "method":"POST",
-      "url":"users.php"
-     },
-     "columns":[
-       {"data":"Codigo"},
-       {"data":"Cedula"},
-       {"data":"Nombre Completo"},
-       {"data":"Correo Electronico"},
-       {"data":"Opciones"}
-     ],
-     "language":idioma_espanol
-    });
- }
-
- var idioma_espanol= {
-  "sProcessing":     "Procesando...",
-              "sLengthMenu":     "Mostrar _MENU_ registros",
-              "sZeroRecords":    "No se encontraron resultados",
-              "sEmptyTable":     "Ningún dato disponible en esta tabla =(",
-              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
-              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
-              "sInfoPostFix":    "",
-              "sSearch":         "Buscar:",
-              "sUrl":            "",
-              "sInfoThousands":  ",",
-              "sLoadingRecords": "Cargando...",
-              "oPaginate": {
-                  "sFirst":    "Primero",
-                  "sLast":     "Último",
-                  "sNext":     "Siguiente",
-                  "sPrevious": "Anterior"
-              },
-              "oAria": {
-                  "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
-                  "sSortDescending": ": Activar para ordenar la columna de manera descendente"
-              },
-              "buttons": {
-                  "copy": "Copiar",
-                  "colvis": "Visibilidad"
-              }
-} 
-
-</script>-->
 </body>
