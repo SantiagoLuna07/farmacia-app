@@ -5,7 +5,7 @@
   class GenericDAO {
     private $dbConnection;
     private $connect;
-    
+
     function __construct() {
       require_once('../resources/html2pdf_4.0/html2pdf.class.php');
       require '../config/Database.php';

@@ -18,7 +18,7 @@
     break;
 
     case 'read':
-      $gdao->executeProcedure('read_client', null);
+      $gdao->executeProcedure('read_client', null, 0);
     break;
 
     case 'update':
@@ -30,7 +30,7 @@
       $gdao->executeFunction('delete_client',array($id), 0);
       break;
     case 'readById':
-      $gdao->executeProcedure('read_by_id_client',array($id));
+      $gdao->executeProcedure('read_by_id_client',array($id), 0);
       break;
 
   default:

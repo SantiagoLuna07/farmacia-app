@@ -21,7 +21,7 @@
       break;
 
       case 'read':
-      $gdao->executeProcedure('read_medicine', null);
+      $gdao->executeProcedure('read_medicine', null, 0);
       break;
 
       case 'update':
@@ -34,11 +34,11 @@
         break;
 
       case 'readById':
-        $gdao->executeProcedure('read_by_id_medicine', array($id));
+        $gdao->executeProcedure('read_by_id_medicine', array($id), 0);
         break;
 
       case 'loadLaboratories':
-        $gdao->executeProcedure('read_laboratories', null);
+        $gdao->executeProcedure('read_laboratories', null, 0);
         break;
 
     default:
