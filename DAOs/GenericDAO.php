@@ -6,17 +6,12 @@
     private $dbConnection;
     private $connect;
     
-    
-
     function __construct() {
       require_once('../resources/html2pdf_4.0/html2pdf.class.php');
       require '../config/Database.php';
 
       $this->dbConnection = new Database();
       $this->connect = $this->dbConnection->getConnect();
-    
-        
-        
     }
 
     /**
@@ -58,9 +53,9 @@
     }
 
     /**
-    * Función que ejecuta una funcion en la base de datos.
+    * Función que ejecuta un procedimiento en la base de datos.
     *
-    * @param $name Nombre de la funcion.
+    * @param $name Nombre del procedimiento.
     * @param $dats Arreglo con los datoS.
     **/
     public function executeProcedure($name, $dats, $opcRes) {
@@ -100,7 +95,7 @@
     }
 
     /**
-    * Funcion que ejecuta un procedimiento en la base de datos.
+    * Funcion para iniciar sesión en el sistema.
     *
     * @param $name nombre de la funcion en la base de datos
     * @param $dats datos
@@ -134,23 +129,23 @@
 
     public function crearReporte()
     {
-        
+
         $query = "call read_user();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
-       
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
-        
-    
+
+
 
        $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
        $content .= "<h3 style='text-align:center';>Reporte Usuarios</h3>";
         $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
-        
+
         $content .= "<page_header>
                                 <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
              </page_header>";
@@ -161,7 +156,7 @@
         for ($i = 1; $i < count($resultKeys); $i++) {
              $content .= "<th>" . $resultKeys[$i] . "</th>";
         }
-       
+
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
             $aux = $result[$i];
@@ -174,16 +169,16 @@
                 if ($j == count($result[$i]) - 1) {
                     $content .= "</tr>";
                 }
-                
+
             }
         }
-       
+
         print_r($content);
 
         $content .= "</table>";
         $content .= "</page>";
 
-      
+
 
         $html2pdf = new HTML2PDF('P', 'A4', 'es'); //formato del pdf (posicion (P=vertical L=horizontal), tamaño del pdf, lenguaje)
         $html2pdf->WriteHTML($content); //Lo que tenga content lo pasa a pdf
@@ -201,28 +196,28 @@
        // print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
-        
-       
+
+
         $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
         $content .= "<h3 style='text-align:center';>Reporte Medicamentos</h3>";
-         
+
         $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
         $content .='<link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css">';
         $content .= "<page_header>
                     <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
                 </page_header>";
 
-                               
+
         //         <page_footer>
         //             <table style='width: 100%;'>
         //                 <tr>
         //                     <td>
         //                         <div><label class='footer'>Aqui pueden cargar una imagen que va en el footer</label></div>
-        //                     </td>                                        
+        //                     </td>
         //                  </tr>
         //             </table>
         //         </page_footer>";
@@ -288,27 +283,27 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
         $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
        $content .= "<h3 style='text-align:center';>Reporte Clientes</h3>";
-        
+
         $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
-        
+
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
 
                 </page_header>";
 
-                               
+
         //         <page_footer>
         //             <table style='width: 100%;'>
         //                 <tr>
         //                     <td>
         //                         <div><label class='footer'>Aqui pueden cargar una imagen que va en el footer</label></div>
-        //                     </td>                                        
+        //                     </td>
         //                  </tr>
         //             </table>
         //         </page_footer>";
@@ -316,10 +311,10 @@
         $content .= "<table '>";
         $content .= "<tr >";
         for ($i = 1; $i < count($resultKeys); $i++) {
-            
+
             $content .= "<th>" . $resultKeys[$i] . "</th>";
         }
-        
+
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
             $aux = $result[$i];
@@ -332,11 +327,11 @@
                 if ($j == count($result[$i]) - 1) {
                     $content .= "</tr>";
                 }
-               
+
             }
         }
         print_r($content);
-       
+
 
         $content .= "</table>";
         $content .= "</page>";
@@ -358,29 +353,29 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
         $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
        $content .= "<h3 style='text-align:center';>Reporte Ventas</h3>";
-        
+
         $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
-        
+
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
 
                 </page_header>";
 
-                               
+
 
         $content .= "<table '>";
         $content .= "<tr >";
         for ($i = 1; $i < count($resultKeys); $i++) {
-            
+
             $content .= "<th>" . $resultKeys[$i] . "</th>";
         }
-        
+
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
             $aux = $result[$i];
@@ -393,11 +388,11 @@
                 if ($j == count($result[$i]) - 1) {
                     $content .= "</tr>";
                 }
-               
+
             }
         }
         print_r($content);
-       
+
 
         $content .= "</table>";
         $content .= "</page>";
@@ -423,7 +418,7 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         /* Se define la zona horaria en Colombia para generar el archivo */
@@ -435,16 +430,16 @@
         header('Content-Disposition: attachment; filename=' . $fileName);
 
         $caracterSeparado = $_POST['txtCaracter'];
-      
+
 
         $content = '';
         for ($i = 1; $i < count($resultKeys); $i++) {
-         
+
           $content .=  $resultKeys[$i] .$caracterSeparado;
-         
+
       }
-    
-      
+
+
       for ($i = 0; $i < count($result); $i++) {
           $aux = $result[$i];
           for ($j = 1; $j < count($result[$i]); $j++) {
@@ -458,12 +453,12 @@
                //   $content .= $caracterSeparado;
                   $content.= "\n";
               }
-              
+
           }
       }
 
 
-        
+
         echo $content;
 
 
@@ -481,7 +476,7 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         /* Se define la zona horaria en Colombia para generar el archivo */
@@ -496,12 +491,12 @@
 
         $content = '';
         for ($i = 1; $i < count($resultKeys); $i++) {
-         
+
           $content .=  $resultKeys[$i] .$caracterSeparado;
-         
+
       }
-    
-      
+
+
       for ($i = 0; $i < count($result); $i++) {
           $aux = $result[$i];
           for ($j = 1; $j < count($result[$i]); $j++) {
@@ -515,12 +510,12 @@
                //   $content .= $caracterSeparado;
                   $content.= "\n";
               }
-              
+
           }
       }
 
 
-        
+
         echo $content;
 
 
@@ -536,7 +531,7 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         /* Se define la zona horaria en Colombia para generar el archivo */
@@ -551,12 +546,12 @@
 
         $content = '';
         for ($i = 1; $i < count($resultKeys); $i++) {
-         
+
           $content .=  $resultKeys[$i] .$caracterSeparado;
-         
+
       }
-    
-      
+
+
       for ($i = 0; $i < count($result); $i++) {
           $aux = $result[$i];
           for ($j = 1; $j < count($result[$i]); $j++) {
@@ -570,12 +565,12 @@
                //   $content .= $caracterSeparado;
                   $content.= "\n";
               }
-              
+
           }
       }
 
 
-        
+
         echo $content;
 
 
@@ -591,7 +586,7 @@
       //  print_r($result);
         // print_r($resultKeys);
 
-        ob_start(); //Habilita el buffer para la salida de datos 
+        ob_start(); //Habilita el buffer para la salida de datos
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         /* Se define la zona horaria en Colombia para generar el archivo */
@@ -606,12 +601,12 @@
 
         $content = '';
         for ($i = 1; $i < count($resultKeys); $i++) {
-         
+
           $content .=  $resultKeys[$i] .$caracterSeparado;
-         
+
       }
-    
-      
+
+
       for ($i = 0; $i < count($result); $i++) {
           $aux = $result[$i];
           for ($j = 1; $j < count($result[$i]); $j++) {
@@ -625,12 +620,12 @@
                //   $content .= $caracterSeparado;
                   $content.= "\n";
               }
-              
+
           }
       }
 
 
-        
+
         echo $content;
 
 
