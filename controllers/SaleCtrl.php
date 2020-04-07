@@ -24,12 +24,8 @@
         $success = true;
 
         foreach ($medicines2 as $medicine) {
-          if (($gdao->executeFunction('save_sale_detail', array($medicine['id'],
-            $medicine['quant'], $idSale), 1)) == null) {
-              // TODO: eliminar venta.
-              $success = false;
-              break;
-          }
+          $gdao->executeFunction('save_sale_detail', array($medicine['id'],
+            $medicine['quant'], $idSale), 1);
         }
 
         if ($success) {

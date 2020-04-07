@@ -73,8 +73,8 @@ DELIMITER ;
 
 DELIMITER //
 CREATE FUNCTION save_sale_detail(
-  v_quantity INT,
   v_idMedicine INT,
+  v_quantity INT,
   v_idSale INT
 ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
 BEGIN
