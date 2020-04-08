@@ -41,77 +41,77 @@
 -- //
 -- DELIMITER ;
 
-DELIMITER //
-CREATE FUNCTION save_sale(
-  v_saleDate VARCHAR(45),
-  v_totalValue DOUBLE,
-  v_idCardCli INT,
-  v_idUser INT
-) RETURNS INT(1) READS SQL DATA DETERMINISTIC
-BEGIN
-  DECLARE res INT DEFAULT 0;
-  DECLARE v_idClient INT;
-  SET v_idClient = (SELECT idClient FROM clients WHERE idCard = v_idCardCli);
-  INSERT INTO sales(saleDate, totalValue, client_idClient, user_idUser)
-    VALUES(v_saleDate, v_totalValue, v_idClient, v_idUser);
-  SET res = 0;
-  RETURN res;
-END
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE read_last_id_sale(v_saleDate VARCHAR(45), v_idCardCli INT)
-BEGIN
-  DECLARE v_idClient INT;
-  SET v_idClient = (SELECT idClient FROM clients WHERE idCard = v_idCardCli);
-  SELECT MAX(idSale) AS id FROM sales
-    WHERE saleDate = v_saleDate AND client_idClient = v_idClient;
-END
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE FUNCTION save_sale_detail(
-  v_idMedicine INT,
-  v_quantity INT,
-  v_idSale INT
-) RETURNS INT(1) READS SQL DATA DETERMINISTIC
-BEGIN
-  DECLARE res INT DEFAULT 0;
-
-  IF (SELECT quantity FROM medicines WHERE idMedicine = v_idMedicine) > v_quantity THEN
-    INSERT INTO sale_details(cuantity, medicine_idMedicine, sale_idSale)
-      VALUES(v_quantity, v_idMedicine, v_idSale);
-    UPDATE medicines SET quantity = (quantity - v_quantity)
-      WHERE idMedicine = v_idMedicine;
-    SET res = 1;
-    END IF;
-  RETURN res;
-END
-//
-DELIMITER ;
-
 -- DELIMITER //
--- CREATE PROCEDURE read_sale()
+-- CREATE FUNCTION save_sale(
+--   v_saleDate VARCHAR(45),
+--   v_totalValue DOUBLE,
+--   v_idCardCli INT,
+--   v_idUser INT
+-- ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
 -- BEGIN
---   SELECT s.idSale, s.saleDate, s.totalValue, c.name || ' ' || c.lastname, u.username
---     FROM sales s
---     JOIN clients c ON s.client_idClient = c.idClient
---     JOIN users u ON s.user_idUser = u.idUser;
+--   DECLARE res INT DEFAULT 0;
+--   DECLARE v_idClient INT;
+--   SET v_idClient = (SELECT idClient FROM clients WHERE idCard = v_idCardCli);
+--   INSERT INTO sales(saleDate, totalValue, client_idClient, user_idUser)
+--     VALUES(v_saleDate, v_totalValue, v_idClient, v_idUser);
+--   SET res = 0;
+--   RETURN res;
 -- END
 -- //
 -- DELIMITER ;
 --
 -- DELIMITER //
--- CREATE PROCEDURE read_sale_details( v_idSale INT )
+-- CREATE PROCEDURE read_last_id_sale(v_saleDate VARCHAR(45), v_idCardCli INT)
 -- BEGIN
---   SELECT sd.idSaleDetail, sd.cuantity, sd.medicine_idMedicine, m.name, sd.sale_idSale
---     FROM sale_details sd JOIN medicines m ON sd.medicine_idMedicine = m.idMedicine
---     WHERE sd.sale_idSale = v_idSale;
+--   DECLARE v_idClient INT;
+--   SET v_idClient = (SELECT idClient FROM clients WHERE idCard = v_idCardCli);
+--   SELECT MAX(idSale) AS id FROM sales
+--     WHERE saleDate = v_saleDate AND client_idClient = v_idClient;
 -- END
 -- //
 -- DELIMITER ;
+--
+-- DELIMITER //
+-- CREATE FUNCTION save_sale_detail(
+--   v_idMedicine INT,
+--   v_quantity INT,
+--   v_idSale INT
+-- ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
+-- BEGIN
+--   DECLARE res INT DEFAULT 0;
+--
+--   IF (SELECT quantity FROM medicines WHERE idMedicine = v_idMedicine) > v_quantity THEN
+--     INSERT INTO sale_details(cuantity, medicine_idMedicine, sale_idSale)
+--       VALUES(v_quantity, v_idMedicine, v_idSale);
+--     UPDATE medicines SET quantity = (quantity - v_quantity)
+--       WHERE idMedicine = v_idMedicine;
+--     SET res = 1;
+--     END IF;
+--   RETURN res;
+-- END
+-- //
+-- DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE read_sales()
+BEGIN
+  SELECT s.idSale, s.saleDate, s.totalValue, CONCAT(c.name, ' ', c.lastname) AS client, u.username
+    FROM sales s
+    JOIN clients c ON s.client_idClient = c.idClient
+    JOIN users u ON s.user_idUser = u.idUser;
+END
+//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE read_sale_details( v_idSale INT )
+BEGIN
+  SELECT sd.idSaleDetail, sd.cuantity, sd.medicine_idMedicine, m.name, sd.sale_idSale
+    FROM sale_details sd JOIN medicines m ON sd.medicine_idMedicine = m.idMedicine
+    WHERE sd.sale_idSale = v_idSale;
+END
+//
+DELIMITER ;
 
 -- DELIMITER //
 -- CREATE FUNCTION update_sale(
