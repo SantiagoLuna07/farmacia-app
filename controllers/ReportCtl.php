@@ -15,6 +15,8 @@ case "client()":$conex->crearReporteC();
 break; 
 case "medicine()":$conex->crearReporteM();
 break;
-case "sale()":$conex->crearReporteV();
+case "saleV()":$conex->crearReporteV();
+break;
+case "saleDV()":$conex->crearReporteDV();
 break;
 }

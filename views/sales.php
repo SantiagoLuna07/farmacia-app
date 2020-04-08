@@ -80,10 +80,18 @@
     </div>
   </div>
 <form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
-  <input type="text" id="txtReportU" style="display:none" value="sale()" name="tabla">
+  <input type="text" id="txtReportU" style="display:none" value="saleV()" name="tabla">
   <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
 
 <i class="fas fa-file-pdf "></i> Exportar a PDF  </button>
+
+</form>
+
+<form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
+  <input type="text" id="txtReportU" style="display:none" value="saleDV()" name="tabla">
+  <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+
+<i class="fas fa-file-pdf "></i> Exportar a PDF DV </button>
 
 </form>
 
@@ -108,6 +116,34 @@
       </div>
     
          <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal6">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv DV
+</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal6">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="SaleDV()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>

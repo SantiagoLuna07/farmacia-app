@@ -41,6 +41,10 @@
         $gdao->executeProcedure('read_laboratories', null, 0);
         break;
 
+        case 'loadUsers':
+          $gdao->executeProcedure('read_Users', null, 0);
+          break;
+
     default:
       echo $type;
       break;

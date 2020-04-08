@@ -1,5 +1,6 @@
 $(document).ready(function(){
   loadLaboratories();
+  loadUsers();
     read();
     $("#create").click(create);
    $("#update").click(modificarr);
@@ -94,6 +95,7 @@ function create() {
       price:$("#txtPrecio").val(),
       labId:$("#txtLaboratorio option:selected").val(),
      userId:$("#txtPersona").val(),
+    // userId:$("#txtPersona option:selected").val(),
       type:'create'
   }
 
@@ -256,14 +258,14 @@ function read () {
     });
   }
 
-  function loadUser() {
+  function loadUsers() {
     $.ajax({
       url: 'controllers/MedicineCtrl.php',
       method: 'POST',
-      data: { type: 'loadLaboratories'},
+      data: { type: 'loadUsers'},
       success: function (req) {
-        $('#txtLaboratorio option').remove();
-        $('#txtLaboratorio').append(`<option value="0">--Seleccione--</option>`);
+        $('#txtPersona option').remove();
+        $('#txtPersona').append(`<option value="0">--Seleccione--</option>`);
         const elements = JSON.parse(req);
         console.log(req);
         if (elements.status === 200) {
@@ -271,10 +273,10 @@ function read () {
           let cities = JSON.parse(data);
   
           $.each(cities, (key, value)=> {
-            $('#txtLaboratorio').append(`<option value="${value.idlaboratory}">${value.name}</option>`);
+            $('#txtPersona').append(`<option value="${value.idUser}">${value.name}</option>`);
           })
         } else {
-          $('#txtLaboratorio').append(`<option value="0">--No hay laboratorios registradas--</option>`);
+          $('#txtPersona').append(`<option value="0">--No hay laboratorios registradas--</option>`);
         }
       },
       error: function (jqXRH, textStatus, errorThrown) {

@@ -347,7 +347,7 @@
     public function crearReporteV()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call read_sale();";
+        $query = "call read_sales();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -404,6 +404,70 @@
         $html2pdf->Output('ReporteClientes.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
 
     }
+
+    public function crearReporteDV()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call read_sale_details();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
+        $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
+       $content .= "<h3 style='text-align:center';>Reporte Detalle Ventas</h3>";
+
+        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+
+        $content .= "<page_header>
+                     <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
+
+                </page_header>";
+
+
+
+        $content .= "<table '>";
+        $content .= "<tr >";
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+            $content .= "<th>" . $resultKeys[$i] . "</th>";
+        }
+
+        $content .= "</tr>";
+        for ($i = 0; $i < count($result); $i++) {
+            $aux = $result[$i];
+            for ($j = 1; $j < count($result[$i]); $j++) {
+                if ($j == 1) {
+                    $content .= "<tr>";
+                }
+                $b = $resultKeys[$j];
+                $content .= "<td>" . $aux[$b] . "</td>";
+                if ($j == count($result[$i]) - 1) {
+                    $content .= "</tr>";
+                }
+
+            }
+        }
+        print_r($content);
+
+
+        $content .= "</table>";
+        $content .= "</page>";
+
+
+        $html2pdf = new HTML2PDF('P', 'A4', 'es'); //formato del pdf (posicion (P=vertical L=horizontal), tamaño del pdf, lenguaje)
+        $html2pdf->WriteHTML($content); //Lo que tenga content lo pasa a pdf
+        ob_end_clean(); // se limpia nuevamente el buffer
+        $html2pdf->Output('ReporteDetalleVentas.pdf'); //se genera el pdf, generando por defecto el nombre indicado para guardar
+
+    }
+
+
+
 
 
 
@@ -466,6 +530,62 @@
     }
 
    
+    public function crearReporteDetalleVenta()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call read_sale_details();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        /* Se define la zona horaria en Colombia para generar el archivo */
+        date_default_timezone_set("America/Bogota");
+        /* Se genera el nombre del archivo con la fecha y hora de la generacion */
+        $fileName = 'ReporteDetalleVenta' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        /* Se define que se retornara un archivo CVS */
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $fileName);
+
+        $caracterSeparado = $_POST['txtCaracter'];
+
+        $content = '';
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+          $content .=  $resultKeys[$i] .$caracterSeparado;
+
+      }
+
+
+      for ($i = 0; $i < count($result); $i++) {
+          $aux = $result[$i];
+          for ($j = 1; $j < count($result[$i]); $j++) {
+              if ($j == 1) {
+                //  $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+              $b = $resultKeys[$j];
+              $content .=  $aux[$b] . $caracterSeparado;
+              if ($j == count($result[$i])) {
+               //   $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+
+          }
+      }
+
+
+
+        echo $content;
+
+
+
+    }
+
+
 
 
 
@@ -639,7 +759,7 @@
     public function crearReporteVCsv()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call consulta1();";
+        $query = "call read_sales();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -695,7 +815,7 @@
     public function crearReporteVCsv2()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call consulta1();";
+        $query = "call consulta2();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -752,7 +872,7 @@
     public function crearReporteVCsv3()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call consulta1();";
+        $query = "call consulta3();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -808,7 +928,7 @@
     public function crearReporteVCsv4()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call consulta1();";
+        $query = "call consulta4();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -820,7 +940,7 @@
         /* Se define la zona horaria en Colombia para generar el archivo */
         date_default_timezone_set("America/Bogota");
         /* Se genera el nombre del archivo con la fecha y hora de la generacion */
-        $fileName = 'ReporteVentas' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        $fileName = 'ReporteVentas4' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
         /* Se define que se retornara un archivo CVS */
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment; filename=' . $fileName);

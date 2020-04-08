@@ -84,7 +84,7 @@ $(document).ready(() => {
     $.ajax({
       url: 'controllers/SaleCtrl.php',
       method: 'POST',
-      data: {type: 'read'},
+      data: {type: 'read_sales'},
       success: function(resServer) {
         let res = JSON.parse(resServer);
         // console.log(res);
@@ -102,10 +102,9 @@ $(document).ready(() => {
           list += '<tr>';
           list += `<td>${element.saleDate}</td>`;
           list += `<td>${element.totalValue}</td>`;
-          list += `<td>${element.idCardClient} ${element.lastname}</td>`;
-          list += `<td>${element.email}</td>`;
+          list += `<td>${element.idCardClient} </td>`;
           list += '<td>';
-          list += `<a onclick="readById(${element.idUser})" class="btn btn-dark`
+          list += `<a onclick="readById(${element.idCard})" class="btn btn-dark`
             +' btn-block" data-toggle="modal" data-target="#updelModal" '
             +'style="color: #ffffff">mas opciones..</a>';
           list += '</td>';

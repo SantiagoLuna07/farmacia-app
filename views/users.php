@@ -7,8 +7,7 @@
 <script src="https://kit.fontawesome.com/34f588a8ba.js" crossorigin="anonymous"></script>
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-    <link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
-
+<link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
 </head>
 <body>
   <div class="row">
