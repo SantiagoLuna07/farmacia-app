@@ -15,6 +15,14 @@ case "client()":$conex->crearReporteCCsv();
 break; 
 case "medicine()":$conex->crearReporteMCsv();
 break;
-case "sale()":$conex->crearReporteVCsv();
+case "sale()":$conex->crearReporteVCSV();
+break;
+case "sale1()":$conex->crearReporteConsulta();
+break;
+case "sale2()":$conex->crearReporteVCsv2();
+break;
+case "sale3()":$conex->crearReporteVCsv3();
+break;
+case "sale4()":$conex->crearReporteVCsv4();
 break;
 }

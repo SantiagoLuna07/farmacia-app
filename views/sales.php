@@ -1,5 +1,5 @@
 <head>
-        <script src="resources/js/sale-action.js" charset="utf-8"></script>
+<script type="text/javascript" src="resources/js/sales-action.js"></script>
         <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
         <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
         <link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
@@ -37,7 +37,7 @@
                  </div>
                  <div class="form-group">
                   <label for="">Cantidad:</label>
-                  <input type="nu,ber" id="Cantidad" class="form-control">
+                  <input type="number" id="Cantidad" class="form-control">
                 </div>
               </div>
               <div class="col-md-6">
@@ -55,7 +55,7 @@
                
                 <div class="form-group">
                   <label for="">Valor Venta:</label>
-                  <input type="number" id="lastnameC" class="form-control"
+                  <input type="number" id="txtVenta" class="form-control"
                     placeholder="Ingresa el valor de la venta">
                 </div>
                 
@@ -87,13 +87,150 @@
 
 </form>
 
-<form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
-          <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
-          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal2">
 
-          <i class="fas fa-file-csv fa-1x"></i> Exportar a csv  </button>
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 
+</button>
 
-        </form>
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal2">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+
+        <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 1
+</button>
+
+        <div class="modal" tabindex="-1" role="dialog" id="exampleModal1">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="sale1()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal3">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 2
+</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal3">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="sale2()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal4">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 3
+</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal4">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="sale3()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
+
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal5">
+
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 4
+</button>
+
+<div class="modal" tabindex="-1" role="dialog" id="exampleModal5">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Exportar a CSV</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
+      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+           <input type="text" class="form-control" name="txtCaracter" required>
+      </div>
+    
+         <input type="text" id="txtReportCsv" style="display:none" value="sale4()" name="tabla">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
+       </form>
+      
+    </div>
+  </div>
+</div>
 
   <div class="row">
     <div class="col-md-12 mx-auto">
@@ -111,9 +248,8 @@
               </tr>
               <tr>
                 <th scope="col">Fecha Venta</th>
-                <th scope="col">Cedula Cliente</th>
                 <th scope="col">Valor Venta</th>
-                <th scope="col">Medicamento</th>
+                <th scope="col">Cliente</th>
                 <th scope="col">Opciones</th>
               </tr>
             </thead>

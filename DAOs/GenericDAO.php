@@ -465,6 +465,65 @@
 
     }
 
+   
+
+
+
+    public function crearReporteConsulta()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call consulta1();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        /* Se define la zona horaria en Colombia para generar el archivo */
+        date_default_timezone_set("America/Bogota");
+        /* Se genera el nombre del archivo con la fecha y hora de la generacion */
+        $fileName = 'ReporteConsulta1' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        /* Se define que se retornara un archivo CVS */
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $fileName);
+
+        $caracterSeparado = $_POST['txtCaracter'];
+
+        $content = '';
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+          $content .=  $resultKeys[$i] .$caracterSeparado;
+
+      }
+
+
+      for ($i = 0; $i < count($result); $i++) {
+          $aux = $result[$i];
+          for ($j = 1; $j < count($result[$i]); $j++) {
+              if ($j == 1) {
+                //  $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+              $b = $resultKeys[$j];
+              $content .=  $aux[$b] . $caracterSeparado;
+              if ($j == count($result[$i])) {
+               //   $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+
+          }
+      }
+
+
+
+        echo $content;
+
+
+
+    }
+
 
 
     public function crearReporteCsv()
@@ -580,7 +639,7 @@
     public function crearReporteVCsv()
     {
         // $sql = "SELECT * FROM " . $tabla;
-        $query = "call read_sale();";
+        $query = "call consulta1();";
         $result = $this->dbConnection->ExecuteReport($query);
         $resultKeys = array_keys($result[0]);
       //  print_r($result);
@@ -632,5 +691,173 @@
 
     }
 
+
+    public function crearReporteVCsv2()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call consulta1();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        /* Se define la zona horaria en Colombia para generar el archivo */
+        date_default_timezone_set("America/Bogota");
+        /* Se genera el nombre del archivo con la fecha y hora de la generacion */
+        $fileName = 'ReporteVentas' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        /* Se define que se retornara un archivo CVS */
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $fileName);
+
+        $caracterSeparado = $_POST['txtCaracter'];
+
+        $content = '';
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+          $content .=  $resultKeys[$i] .$caracterSeparado;
+
+      }
+
+
+      for ($i = 0; $i < count($result); $i++) {
+          $aux = $result[$i];
+          for ($j = 1; $j < count($result[$i]); $j++) {
+              if ($j == 1) {
+                //  $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+              $b = $resultKeys[$j];
+              $content .=  $aux[$b] . $caracterSeparado;
+              if ($j == count($result[$i])) {
+               //   $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+
+          }
+      }
+
+
+
+        echo $content;
+
+
+
+    }
+
+
+
+    public function crearReporteVCsv3()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call consulta1();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        /* Se define la zona horaria en Colombia para generar el archivo */
+        date_default_timezone_set("America/Bogota");
+        /* Se genera el nombre del archivo con la fecha y hora de la generacion */
+        $fileName = 'ReporteVentas' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        /* Se define que se retornara un archivo CVS */
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $fileName);
+
+        $caracterSeparado = $_POST['txtCaracter'];
+
+        $content = '';
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+          $content .=  $resultKeys[$i] .$caracterSeparado;
+
+      }
+
+
+      for ($i = 0; $i < count($result); $i++) {
+          $aux = $result[$i];
+          for ($j = 1; $j < count($result[$i]); $j++) {
+              if ($j == 1) {
+                //  $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+              $b = $resultKeys[$j];
+              $content .=  $aux[$b] . $caracterSeparado;
+              if ($j == count($result[$i])) {
+               //   $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+
+          }
+      }
+
+
+
+        echo $content;
+
+
+
+    }
+
+
+    public function crearReporteVCsv4()
+    {
+        // $sql = "SELECT * FROM " . $tabla;
+        $query = "call consulta1();";
+        $result = $this->dbConnection->ExecuteReport($query);
+        $resultKeys = array_keys($result[0]);
+      //  print_r($result);
+        // print_r($resultKeys);
+
+        ob_start(); //Habilita el buffer para la salida de datos
+        ob_get_clean(); //Limpia lo que actualmente tenga el buffer
+        // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
+        /* Se define la zona horaria en Colombia para generar el archivo */
+        date_default_timezone_set("America/Bogota");
+        /* Se genera el nombre del archivo con la fecha y hora de la generacion */
+        $fileName = 'ReporteVentas' . '-' . date("Y-m-d") . "(" . date("h:i:sa") . ")" . '.csv';
+        /* Se define que se retornara un archivo CVS */
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        header('Content-Disposition: attachment; filename=' . $fileName);
+
+        $caracterSeparado = $_POST['txtCaracter'];
+
+        $content = '';
+        for ($i = 1; $i < count($resultKeys); $i++) {
+
+          $content .=  $resultKeys[$i] .$caracterSeparado;
+
+      }
+
+
+      for ($i = 0; $i < count($result); $i++) {
+          $aux = $result[$i];
+          for ($j = 1; $j < count($result[$i]); $j++) {
+              if ($j == 1) {
+                //  $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+              $b = $resultKeys[$j];
+              $content .=  $aux[$b] . $caracterSeparado;
+              if ($j == count($result[$i])) {
+               //   $content .= $caracterSeparado;
+                  $content.= "\n";
+              }
+
+          }
+      }
+
+
+
+        echo $content;
+
+
+
+    }
   }
  ?>

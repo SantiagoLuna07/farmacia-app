@@ -37,6 +37,10 @@
         echo json_encode(['status' => 400, 'msg' => 'error: sale']);
       }
       break;
+      case 'loadClients':
+        $gdao->executeProcedure('read_client', null, 0);
+        break;
+
 
     default:
       // code...
