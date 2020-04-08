@@ -142,9 +142,9 @@
 
 
 
-       $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
+       $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Usuarios</h3>";
-        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                                 <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -202,11 +202,11 @@
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
 
 
-        $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
+        $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
         $content .= "<h3 style='text-align:center';>Reporte Medicamentos</h3>";
 
-        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
         $content .='<link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css">';
+        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
         $content .= "<page_header>
                     <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
                 </page_header>";
@@ -287,10 +287,10 @@
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
-        $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
+        $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Clientes</h3>";
 
-        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -357,10 +357,10 @@
         ob_get_clean(); //Limpia lo que actualmente tenga el buffer
         // //En la variable content entre las etiquetas <page></page> va todo el contenido del pdf en formato html
         $content = "<page backtop='40mm' backbottom='30mm' backleft='20mm' backright='20mm' footer='date;page'>";
-        $content .= "<h1 style='text-align:center';>FARMACIA</font></h1>";
+        $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Ventas</h3>";
 
-        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
