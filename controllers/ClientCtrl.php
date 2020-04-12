@@ -33,6 +33,10 @@
       $gdao->executeProcedure('read_by_id_client',array($id), 0);
       break;
 
+      case 'readGrafico':
+        $gdao->executeProcedure('listGeneros',null, 0);
+        break;   
+
   default:
     session_destroy();
     header('location: ../index.php?success-msg=Vuelve pronto');

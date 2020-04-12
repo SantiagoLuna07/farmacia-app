@@ -17,6 +17,7 @@
       <a class="nav-item nav-link" href="index.php?page=clients">clientes</a>
       <a class="nav-item nav-link" href="index.php?page=medicines">Inventario</a>
       <a class="nav-item nav-link" href="index.php?page=sales">ventas</a>
+      <a class="nav-item nav-link" href="index.php?page=charts">Graficos</a>
     </div>
     <div class="navbar-nav ml-auto">
       <a class="nav-item nav-link" href="controllers/userCtrl.php"> <i class="fas fa-sign-out-alt fa-3x"></i></a>
