@@ -201,3 +201,10 @@ SELECT m.idMedicine, m.name, SUM(sd.cuantity) quantity_sold
     ORDER BY quantity_sold DESC;
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE listGeneros()
+BEGIN
+select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
+END//
+DELIMITER ;

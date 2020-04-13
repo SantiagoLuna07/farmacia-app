@@ -1,5 +1,6 @@
 $(document).ready(function(){
     read();
+    readGrafica();
     $("#btnGuardar").click(create);
    $("#update").click(update);
     $("#delete").click(deletee);
@@ -26,8 +27,9 @@ function create() {
         },
         data: user,
         success: function (resServer) {
-          // console.log(resServer);
+           console.log(resServer);
           let res = JSON.parse(resServer);
+          console.log(res);
           if (res.status === 200) {
             toastr.success('Registrado Con Exito');
             read();
@@ -54,8 +56,9 @@ function create() {
       data: {type: 'read'},
       success: function(resServer) {
         let res = JSON.parse(resServer);
-        // console.log(res);
+      //   console.log(res);
         let data = JSON.parse(res.data);
+      //  console.log(res.data);
   
         let list = "<thead><tr>\n\
                    <th>Codigo</th>\n\
@@ -94,6 +97,47 @@ function create() {
       }
     });
   }
+ 
+
+
+  function readGrafica () {
+    $.ajax({
+      url: 'controllers/ClientCtrl.php',
+      method: 'POST',
+      data: {type: 'readGrafico'},
+      success: function(resServer) {
+        let res = JSON.parse(resServer);
+         console.log(res);
+        let info = JSON.parse(res.data);
+        console.log(res.data);    
+        if(info.length>0){
+
+       
+        var chart2 = c3.generate({
+          bindto: '#chart2',
+          data: {
+              columns: [
+                  ["Hombres",info[0].Hombres],                  
+                  ["Mujeres",info[0].Mujeres]             
+              ],
+              type: 'donut',
+             
+          },
+          donut: {
+              title: "Estadistica Generos"
+          }
+      });
+    }
+
+  
+      },
+      error: function (jqXRH, textStatus, errorThrown) {
+        console.error('error on server: ', textStatus);
+        console.error('Exception on server:', errorThrown);
+      }
+    });
+  }
+
 
   function readById(id) {
     $.ajax({
@@ -150,6 +194,7 @@ function create() {
       data: user,
       success: function (resServer) {
         let res = JSON.parse(resServer);
+        console.log(res);
         if (res.status === 200) {
           toastr.success('Modificado Con Exito');
           read();
@@ -197,6 +242,10 @@ function create() {
       }
     });
   }
+
+  
+
+
 
 
   

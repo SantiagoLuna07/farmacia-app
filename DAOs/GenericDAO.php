@@ -290,7 +290,7 @@
         $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Clientes</h3>";
 
-        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+      //   $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
