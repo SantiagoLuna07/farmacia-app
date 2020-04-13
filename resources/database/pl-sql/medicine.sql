@@ -25,7 +25,7 @@ DELIMITER //
 CREATE PROCEDURE read_medicine()
 BEGIN
   SELECT m.idMedicine, m.name, m.description, m.expirationDate, m.quantity, m.fabricationDate,
-    m.price, l.name, u.username FROM medicines m
+    m.price, l.name AS laboratory, u.username FROM medicines m
     JOIN laboratories l ON m.laboratory_idlaboratory = l.idlaboratory
     JOIN users u ON m.user_idUser = u.idUser;
 END
