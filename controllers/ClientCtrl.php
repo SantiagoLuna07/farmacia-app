@@ -35,7 +35,16 @@
 
       case 'readGrafico':
         $gdao->executeProcedure('listGeneros',null, 0);
-        break;   
+        break;
+        
+      
+     case 'readGrafico2':
+            $gdao->executeProcedure('cantidadProductos',null, 0);
+            break;
+
+            case 'readGrafico4':
+              $gdao->executeProcedure('ventaEmpleado',null, 0);
+              break;
 
   default:
     session_destroy();

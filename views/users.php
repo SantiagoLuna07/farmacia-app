@@ -2,13 +2,14 @@
 <head>
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
 <link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+
 <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="resources/js/users-action.js" charset="utf-8"></script>
 <script src="https://kit.fontawesome.com/34f588a8ba.js" crossorigin="anonymous"></script>
+<!--<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
 <script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-<script type="text/javascript" src="resources/datatables/js/jquery.datatables.js"></script>
-<link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>
+<link rel="stylesheet" href="resources/datatables/css/jquery.datatables.css"/>-->
 
 </head>
 <body>

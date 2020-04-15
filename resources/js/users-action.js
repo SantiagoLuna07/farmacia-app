@@ -57,9 +57,9 @@ function read () {
     data: {type: 'read'},
     success: function(resServer) {
       let res = JSON.parse(resServer);
-      // console.log(res);
+       console.log(res);
       let data = JSON.parse(res.data);
-
+      console.log(res.data);
       let list = "<thead><tr>\n\
                       <th>Codigo</th>\n\
                       <th>Cedula</th>\n\

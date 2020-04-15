@@ -208,3 +208,11 @@ BEGIN
 select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
 END//
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ventaEmpleado()
+BEGIN
+SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
+FROM sales s join users u on u.idUser = s.user_idUser
+GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
+DELIMITER ;

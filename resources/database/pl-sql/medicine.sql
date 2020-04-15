@@ -92,3 +92,10 @@ BEGIN
 END
 //
 DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE cantidadProductos()
+BEGIN
+select  name,quantity from medicines;END//
+DELIMITER ;
+

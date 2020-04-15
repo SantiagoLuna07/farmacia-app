@@ -1,6 +1,9 @@
 $(document).ready(function(){
     read();
+    
     readGrafica();
+    readGrafica2();
+    readGrafica3();
     $("#btnGuardar").click(create);
    $("#update").click(update);
     $("#delete").click(deletee);
@@ -130,6 +133,7 @@ function create() {
     }
 
   
+  
       },
       error: function (jqXRH, textStatus, errorThrown) {
         console.error('error on server: ', textStatus);
@@ -138,6 +142,116 @@ function create() {
     });
   }
 
+/*
+  function organizarGrafica2(){
+    let datos=[];
+    for(let i=0; i<dataProcedimiento.length; i++){
+      let columna=[dataProcedimiento[i].nombre,dataProcedimiento[i].cantidad_ventas];
+      datos.push(columna);
+    }
+    return datos;
+  }*/
+ 
+  function readGrafica2 () {
+      let dataProcedimiento={};
+    $.ajax({
+      url: 'controllers/ClientCtrl.php',
+      method: 'POST',
+      data: {type: 'readGrafico2'},
+      success: function(respuesta) {
+        const res = JSON.parse(respuesta);
+        dataProcedimiento = JSON.parse(res.data);
+       // console.log(dataProcedimiento);
+        const informacion = organizarRespuesta();
+        Grafica(informacion);
+   
+       
+
+
+  
+      },
+      error: function (jqXRH, textStatus, errorThrown) {
+        console.error('error on server: ', textStatus);
+        console.error('Exception on server:', errorThrown);
+      }
+    });
+
+    function organizarRespuesta(){
+      let datos=[];
+    for(let i=0; i<dataProcedimiento.length; i++){    
+      let columna=[dataProcedimiento[i].name,dataProcedimiento[i].quantity];
+       datos.push(columna);
+       
+     //  console.log(""+[i]);
+       //console.log(columna);
+    }
+    return datos;
+  }
+
+  function Grafica(datos){
+    var chart3 = c3.generate({
+            
+      bindto: '#chart3',
+      data: {
+          columns: datos,                        
+          type: 'donut', 
+      },
+      donut: {
+        title: "Productos/Cantidad"
+    }
+     
+  });
+  }
+
+  }
+
+  
+
+  function readGrafica3 () {
+    let dataProcedimiento2={};
+    $.ajax({
+      url: 'controllers/ClientCtrl.php',
+      method: 'POST',
+      data: {type: 'readGrafico4'},
+      success: function(resServer) {
+        const res = JSON.parse(resServer);
+      //   console.log(res);
+        dataProcedimiento2 = JSON.parse(res.data);
+        const informacion2= organziar();
+        llenarGrafico(informacion2);
+       // console.log(res.data);    
+      
+      },
+      error: function (jqXRH, textStatus, errorThrown) {
+        console.error('error on server: ', textStatus);
+        console.error('Exception on server:', errorThrown);
+      }
+    });
+
+function organziar(){
+  let datos=[];
+  for(let i=0; i<dataProcedimiento2.length; i++){    
+    let columna=[dataProcedimiento2[i].name,dataProcedimiento2[i].cantidad_ventas,dataProcedimiento2[i].total];
+     datos.push(columna);
+     
+   //  console.log(""+[i]);
+     //console.log(columna);
+  }
+  return datos;
+}
+
+
+function llenarGrafico(datos){
+  var chart4 = c3.generate({
+    bindto: '#chart4',
+    data: {
+        columns: datos,
+      },
+      type: 'spline'
+      });
+}
+
+  }
 
   function readById(id) {
     $.ajax({
