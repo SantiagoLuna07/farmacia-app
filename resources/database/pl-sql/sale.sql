@@ -92,26 +92,26 @@
 -- //
 -- DELIMITER ;
 
-DELIMITER //
-CREATE PROCEDURE read_sales()
-BEGIN
-  SELECT s.idSale, s.saleDate, s.totalValue, CONCAT(c.name, ' ', c.lastname) AS client, u.username
-    FROM sales s
-    JOIN clients c ON s.client_idClient = c.idClient
-    JOIN users u ON s.user_idUser = u.idUser;
-END
-//
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE read_sale_details( v_idSale INT )
-BEGIN
-  SELECT sd.idSaleDetail, sd.cuantity, sd.medicine_idMedicine, m.name, sd.sale_idSale
-    FROM sale_details sd JOIN medicines m ON sd.medicine_idMedicine = m.idMedicine
-    WHERE sd.sale_idSale = v_idSale;
-END
-//
-DELIMITER ;
+-- DELIMITER //
+-- CREATE PROCEDURE read_sales()
+-- BEGIN
+--   SELECT s.idSale, s.saleDate, s.totalValue, CONCAT(c.name, ' ', c.lastname) AS client, u.username
+--     FROM sales s
+--     JOIN clients c ON s.client_idClient = c.idClient
+--     JOIN users u ON s.user_idUser = u.idUser;
+-- END
+-- //
+-- DELIMITER ;
+--
+-- DELIMITER //
+-- CREATE PROCEDURE read_sale_details( v_idSale INT )
+-- BEGIN
+--   SELECT sd.idSaleDetail, sd.cuantity, sd.medicine_idMedicine, m.name, sd.sale_idSale
+--     FROM sale_details sd JOIN medicines m ON sd.medicine_idMedicine = m.idMedicine
+--     WHERE sd.sale_idSale = v_idSale;
+-- END
+-- //
+-- DELIMITER ;
 
 -- DELIMITER //
 -- CREATE FUNCTION update_sale(
@@ -163,7 +163,7 @@ DELIMITER ;
 -- DELIMITER ;
 
 -- consulta1
-SELECT * FROM pharmacydb.sales;
+-- SELECT * FROM pharmacydb.sales;
 DELIMITER //
 CREATE  PROCEDURE `consulta1`()
 BEGIN
@@ -186,9 +186,9 @@ DELIMITER //
 CREATE PROCEDURE  `consulta2`()
 BEGIN
 SELECT u.idCard, u.name, u.lastname, u.email, u.username, SUM(s.totalValue) total_sales
-	FROM users u JOIN sales s ON u.idUser = s.user_idUser 
-	GROUP BY u.idUser 
-	ORDER BY totalValue DESC;
+	FROM users u JOIN sales s ON u.idUser = s.user_idUser
+	GROUP BY u.idUser
+	ORDER BY total_sales DESC;
 END//
 DELIMITER ;
 -- consulta3

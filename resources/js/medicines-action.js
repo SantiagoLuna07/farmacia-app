@@ -116,7 +116,7 @@ function create() {
           toastr.success('Registrado Con Exito');
           read();
           clean();
-          
+
         } else {
           toastr.error('ERROR','No se pudo guardar');
          console.log('0');
@@ -142,7 +142,7 @@ function read () {
         let res = JSON.parse(resServer);
         // console.log(res);
         let data = JSON.parse(res.data);
-  
+
         let list = "<thead><tr>\n\
                    <th>Codigo</th>\n\
                     <th>Nombre Medicamento</th>\n\
@@ -164,25 +164,25 @@ function read () {
           list += `<td>${element.description}</td>`;
           list += `<td>${element.expirationDate}</td>`;
           list += `<td>${element.fabricationDate}</td>`;
-          list += `<td>${element.labId}</td>`;
+          list += `<td>${element.laboratory}</td>`;
           list += `<td>${element.price}</td>`;
           list += `<td>${element.quantity}</td>`;
-          list += `<td>${element.userId}</td>`;
-         
-          
+          list += `<td>${element.username}</td>`;
+
+
           list += '<td>';
           list += `<a onclick="readById(${element.idMedicine})" class="btn btn-dark`
             +' btn-block" data-toggle="modal" data-target="#updelModal" '
             +'style="color: #ffffff">mas opciones..</a>';
           list += '</td>';
           list += '</tr>';
-          
+
         }
         list=list+ "</tbody>";
         $('#list').html(list);
         $('#list').dataTable();
 
-  
+
       },
       error: function (jqXRH, textStatus, errorThrown) {
         console.error('error on server: ', textStatus);
@@ -201,10 +201,10 @@ function read () {
       data: {id: id, type: 'readById'},
       success: function (resServer) {
         let res = JSON.parse(resServer);
-  
+
         if (res.status === 200) {
           let data = JSON.parse(res.data);
-          
+
           for(element of data) {
             $('#idU').val(element.idMedicine);
             $('#nameU').val(element.name);
@@ -243,7 +243,7 @@ function read () {
         if (elements.status === 200) {
           let data = elements.data;
           let cities = JSON.parse(data);
-  
+
           $.each(cities, (key, value)=> {
             $('#txtLaboratorio').append(`<option value="${value.idlaboratory}">${value.name}</option>`);
           })
@@ -271,7 +271,7 @@ function read () {
         if (elements.status === 200) {
           let data = elements.data;
           let cities = JSON.parse(data);
-  
+
           $.each(cities, (key, value)=> {
             $('#txtPersona').append(`<option value="${value.idUser}">${value.name}</option>`);
           })
@@ -285,8 +285,8 @@ function read () {
       }
     });
 
-    
-    
+
+
   }
   function clean() {
     $("#txtNombre").val("");
@@ -297,7 +297,7 @@ function read () {
     $("#txtPrecio").val("0");
     $("#txtLaboratorio").val(0);
     $("#txtPersona").val(0);
-   
+
   }
 
   function cleanModal(){

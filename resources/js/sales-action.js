@@ -21,7 +21,7 @@ $(document).ready(() => {
         if (elements.status === 200) {
           let data = elements.data;
           let cities = JSON.parse(data);
-  
+
           $.each(cities, (key, value)=> {
             $('#txtCliente').append(`<option value="${value.idCard}">${value.idCard}</option>`);
           })
@@ -47,7 +47,7 @@ $(document).ready(() => {
         medicines: $('#usernameC').val(),
         type: 'create'
     }
-  
+
     if(1==1){
       $.ajax({
         url: 'controllers/userCtrl.php',
@@ -76,10 +76,10 @@ $(document).ready(() => {
       });
     }else{
       toastr.info('Verifique los datos ingresados','ADVERTENCIA');    }
-  
+
   }
-  
-  
+
+
   function read () {
     $.ajax({
       url: 'controllers/SaleCtrl.php',
@@ -89,32 +89,32 @@ $(document).ready(() => {
         let res = JSON.parse(resServer);
         // console.log(res);
         let data = JSON.parse(res.data);
-  
+
         let list = "<thead><tr>\n\
                         <th>Fecha Venta</th>\n\
                         <th>Valor Venta</th>\n\
                         <th>Cliente</th>\n\
                         <th>Opciones</th>\n\
                     </tr></thead>";
-  
+
        list+= "<tbody>"
         for (element of data) {
           list += '<tr>';
           list += `<td>${element.saleDate}</td>`;
           list += `<td>${element.totalValue}</td>`;
-          list += `<td>${element.idCardClient} </td>`;
+          list += `<td>${element.client} </td>`;
           list += '<td>';
           list += `<a onclick="readById(${element.idCard})" class="btn btn-dark`
             +' btn-block" data-toggle="modal" data-target="#updelModal" '
             +'style="color: #ffffff">mas opciones..</a>';
           list += '</td>';
           list += '</tr>';
-         
+
         }
         list+= "<tbody>"
         $('#list').html(list);
         $('#list').dataTable();
-  
+
       },
       error: function (jqXRH, textStatus, errorThrown) {
         console.error('error on server: ', textStatus);
@@ -122,7 +122,7 @@ $(document).ready(() => {
       }
     });
   }
-  
+
   function readById(id) {
     $.ajax({
       url: 'controllers/userCtrl.php',
@@ -133,10 +133,10 @@ $(document).ready(() => {
       data: {id: id, type: 'readById'},
       success: function (resServer) {
         let res = JSON.parse(resServer);
-  
+
         if (res.status === 200) {
           let data = JSON.parse(res.data);
-  
+
           for(element of data) {
             $('#idU').val(element.idUser);
             $('#idCardU').val(element.idCard);
@@ -157,7 +157,7 @@ $(document).ready(() => {
       }
     });
   }
-  
+
   function update() {
     let user = {
       id: $('#idU').val(),
@@ -166,10 +166,10 @@ $(document).ready(() => {
       lastname: $('#lastnameU').val(),
       email: $('#emailU').val(),
       username: $('#usernameU').val(),
-  
+
       type: 'update'
     }
-  
+
     $.ajax({
       url: 'controllers/userCtrl.php',
       method: 'POST',
@@ -194,7 +194,7 @@ $(document).ready(() => {
       }
     });
   }
-  
+
   function deletee() {
     let country = {
       id: $('#idU').val(),
@@ -210,7 +210,7 @@ $(document).ready(() => {
       success: function (resServer) {
         let res = JSON.parse(resServer);
         if (res.status === 200) {
-         
+
           toastr.success('Se elimino Con Exito');
           read();
         } else {
@@ -225,7 +225,7 @@ $(document).ready(() => {
       }
     });
   }
-  
+
   function valPass() {
     if ($('#passwordC').val() === $('#password2C').val()) {
       $('#password').addClass('is-valid');
@@ -237,7 +237,7 @@ $(document).ready(() => {
       return false;
     }
   }
-  
+
   function clean() {
     $('#idCardC').val('');
     $('#idCardC').removeClass('is-valid');
@@ -261,4 +261,3 @@ $(document).ready(() => {
     $('#password2C').removeClass('is-valid');
     $('#password2C').removeClass('is-invalid');
   }
-
