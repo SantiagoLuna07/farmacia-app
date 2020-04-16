@@ -1,2 +1,7 @@
-/config
-/config/Database.php
+# Archivo conexioón a base de datos..
+config/
+
+# librerias reportes pdf..
+resources/html2pdf_4.0/
+
+# librerias reportes graficos..
