@@ -1,49 +1,6 @@
 -- DELIMITER //
 -- CREATE FUNCTION save_sale(
 --   v_saleDate VARCHAR(45),
---   v_totalValue VARCHAR(45),
---   v_cliId VARCHAR(45),
---   v_userId VARCHAR(45),
---   v_medIds VARCHAR(1000),
---   v_quants VARCHAR(1000)
--- ) RETURNS INT(1) READS SQL DATA DETERMINISTIC
--- BEGIN
---   DECLARE res INT DEFAULT 0;
---   DECLARE v_idSale INT;
---   DECLARE v_idMedicine INT;
---   DECLARE v_quantity INT;
---
---   INSERT INTO sales(saleDate, totalValue, client_idClient, user_idUser)
---     VALUES (v_saleDate, v_totalValue, v_cliId, v_userId);
---
---   SELECT MAX(idSale) INTO v_idSale
---       FROM sales
---       WHERE saleDate = v_saleDate
---       AND client_idClient = v_cliId
---       AND user_idUser = v_userId;
---
---   WHILE(LOCATE(',', v_medIds) > 0) DO
---     SET v_idMedicine = ELT(1, v_medIds);
---     SET v_medIds = SUBSTRING(v_medIds, LOCATE(',', v_medicines) + 1);
---     SET v_quantity = ELT(1, v_quants);
---     SET v_quants = SUBSTRING(v_quants, LOCATE(',', v_quants) + 1);
---
---     IF v_medIds <> ',' THEN
---       INSERT INTO sale_detatils(cuantity, medicine_idMedicine, sale_idSale)
---         VALUES(v_quantity, v_idMedicine, v_idSale);
---     END IF;
---   END WHILE;
---
---   SET res = 1;
---
---   RETURN res;
--- END
--- //
--- DELIMITER ;
-
--- DELIMITER //
--- CREATE FUNCTION save_sale(
---   v_saleDate VARCHAR(45),
 --   v_totalValue DOUBLE,
 --   v_idCardCli INT,
 --   v_idUser INT
@@ -164,55 +121,65 @@
 
 -- consulta1
 -- SELECT * FROM pharmacydb.sales;
-DELIMITER //
-CREATE  PROCEDURE `consulta1`()
-BEGIN
-select res.client_idClient, totalcompras,gastado from (SELECT s.client_idClient,count(*) Totalcompras, SUM(totalValue) gastado
-FROM sales s
-GROUP BY s.client_idClient) res join clients cli on cli.idClient = res.client_idClient
-order by res.gastado desc;
-END//
+-- DELIMITER //
+-- CREATE  PROCEDURE `consulta1`()
+-- BEGIN
+-- select res.client_idClient, totalcompras,gastado from (SELECT s.client_idClient,count(*) Totalcompras, SUM(totalValue) gastado
+-- FROM sales s
+-- GROUP BY s.client_idClient) res join clients cli on cli.idClient = res.client_idClient
+-- order by res.gastado desc;
+-- END//
+--
+-- -- CONSULTA 2
+--
+-- DELIMITER //
+-- CREATE PROCEDURE  `consulta4`()
+-- BEGIN
+-- select s.saleDate, count(*) cantidad , sum(s.totalValue) total from sales s group by s.saleDate;
+-- END//
+-- DELIMITER ;
+-- -- consulta 3
+-- DELIMITER //
+-- CREATE PROCEDURE  `consulta2`()
+-- BEGIN
+-- SELECT u.idCard, u.name, u.lastname, u.email, u.username, SUM(s.totalValue) total_sales
+-- 	FROM users u JOIN sales s ON u.idUser = s.user_idUser
+-- 	GROUP BY u.idUser
+-- 	ORDER BY total_sales DESC;
+-- END//
+-- DELIMITER ;
+-- -- consulta3
+-- DELIMITER //
+-- CREATE PROCEDURE  `consulta3`()
+-- BEGIN
+-- SELECT m.idMedicine, m.name, SUM(sd.cuantity) quantity_sold
+-- 	FROM medicines m JOIN sale_details sd ON m.idMedicine = sd.medicine_idMedicine
+--     GROUP BY m.idMedicine
+--     ORDER BY quantity_sold DESC;
+-- END//
+-- DELIMITER ;
 
--- CONSULTA 2
+-- DELIMITER //
+-- CREATE PROCEDURE listGeneros()
+-- BEGIN
+-- select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
+-- END//
+-- DELIMITER ;
+--
+-- DELIMITER //
+-- CREATE PROCEDURE ventaEmpleado()
+-- BEGIN
+-- SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
+-- FROM sales s join users u on u.idUser = s.user_idUser
+-- GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
+-- END
+-- //
+-- DELIMITER ;
 
-DELIMITER //
-CREATE PROCEDURE  `consulta4`()
-BEGIN
-select s.saleDate, count(*) cantidad , sum(s.totalValue) total from sales s group by s.saleDate;
-END//
-DELIMITER ;
--- consulta 3
-DELIMITER //
-CREATE PROCEDURE  `consulta2`()
-BEGIN
-SELECT u.idCard, u.name, u.lastname, u.email, u.username, SUM(s.totalValue) total_sales
-	FROM users u JOIN sales s ON u.idUser = s.user_idUser
-	GROUP BY u.idUser
-	ORDER BY total_sales DESC;
-END//
-DELIMITER ;
--- consulta3
-DELIMITER //
-CREATE PROCEDURE  `consulta3`()
-BEGIN
-SELECT m.idMedicine, m.name, SUM(sd.cuantity) quantity_sold
-	FROM medicines m JOIN sale_details sd ON m.idMedicine = sd.medicine_idMedicine
-    GROUP BY m.idMedicine
-    ORDER BY quantity_sold DESC;
-END//
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE listGeneros()
-BEGIN
-select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
-END//
-DELIMITER ;
-
-DELIMITER //
-CREATE PROCEDURE ventaEmpleado()
-BEGIN
-SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
-FROM sales s join users u on u.idUser = s.user_idUser
-GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
-DELIMITER ;
+-- consultaGrafico2
+-- DELIMITER //
+-- CREATE PROCEDURE cantidadProductos()
+-- BEGIN
+-- select  name,quantity from medicines;
+-- END//
+-- DELIMITER ;
