@@ -6,3 +6,6 @@ resources/html2pdf_4.0/
 
 # librerias reportes graficos..
 resources/c3-0.4.17/
+
+# libreria datatable..
+resources/datatables
