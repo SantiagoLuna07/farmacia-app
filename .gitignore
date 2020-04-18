@@ -1,11 +1,11 @@
 # Archivo conexioón a base de datos..
-config/
+/config
 
 # librerias reportes pdf..
-resources/html2pdf_4.0/
+/resources/html2pdf_4.0
 
 # librerias reportes graficos..
-resources/c3-0.4.17/
+/resources/c3-0.4.17
 
 # libreria datatable..
-resources/datatables
+/resources/datatables
