@@ -10,7 +10,7 @@
 </head>
 <body>
 <div class="row">
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-12 mx-auto">
       <div class="card">
         <div class="card-header">
         <i class="fas fa-capsules fa-7x"></i>
@@ -18,11 +18,46 @@
         </div>
         <form>
           <div class="card-body">
-            <div class="row">
-              <div class="col-md-6">
+             <div class="row">
+               <div class="col-md-4">
+                 <div class="form-group">
+                   <label for="saleDate">Fecha de la Venta:</label>
+                   <input type="date" name="saleDate" id="saleDate" class="form-control">
+                 </div>
+                 <div class="form-group">
+                   <label for="idCardClient">Cedula del Cliente:</label>
+                   <input type="number" name="idCardClient" id="idCardClient" class="form-control">
+                 </div>
+                 <hr>
+                 <form>
+                   <div class="form_group">
+                     <label for="idMedicine">Codigo medicamento</label>
+                     <input type="number" name="idMedicine" id="idMedicine" class="form_control">
+                   </div>
+                   <br>
+                   <a id="addMedicine" class="btn btn-primary btn-block my-auto"
+                    style="color: #ffffff;">Agregar</a>
+                 </form>
+               </div>
+               <div class="col-md-8" style="border-left: 1px solid #b1b1b1">
+                 <table class="table">
+                  <thead class="thead-dark">
+                    <tr>
+                      <th scope="col">Codigo #</th>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Cant. Disponible</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Cant. a vender</th>
+                    </tr>
+                  </thead>
+                  <tbody id="medicinesList">
+                  </tbody>
+                </table>
+               </div>
+              <!--<div class="col-md-6">
                 <div class="form-group">
                 <label >Fecha Venta</label>
-         <input id="txtFechaVenta" width="276" placeholder="11/21/1998" />           
+         <input id="txtFechaVenta" width="276" placeholder="11/21/1998" />
          <script>
               $('#txtFechaVenta').datepicker({
                   uiLibrary: 'bootstrap4'
@@ -32,7 +67,7 @@
                 <div class="form-group ">
                      <label for="inputState">Cliente</label>
                       <select class="form-control" id="txtCliente"   >
-                          <option value="0">SELECCIONE UN CLIENTE</option>                      
+                          <option value="0">SELECCIONE UN CLIENTE</option>
                         </select>
                  </div>
                  <div class="form-group">
@@ -49,17 +84,17 @@
                 <div class="form-group ">
                      <label for="inputState">Medicamento</label>
                       <select class="form-control" id="txtMedicamento"   >
-                          <option value="0">SELECCIONE UN Medicamento</option>                      
+                          <option value="0">SELECCIONE UN Medicamento</option>
                         </select>
                  </div>
-               
+
                 <div class="form-group">
                   <label for="">Valor Venta:</label>
                   <input type="number" id="txtVenta" class="form-control"
                     placeholder="Ingresa el valor de la venta">
                 </div>
-                
-              </div>
+
+              </div>-->
             </div>
             <div id="progressbarr" class="progress no-display">
               <div class="progress-bar progress-bar-striped progress-bar-animated"
@@ -72,9 +107,9 @@
               style="color: #ffffff"> <i class="fas fa-save fa-2x"></i></a>
             <a id="cancel" class="btn btn-danger"
               style="color: #ffffff"><i class="fas fa-broom fa-2x"></i></a>
-              
+
           </div>
-          
+
         </form>
       </div>
     </div>
@@ -97,7 +132,7 @@
 
 <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal2">
 
-<i class="fas fa-file-csv fa-1x"></i> Exportar a csv 
+<i class="fas fa-file-csv fa-1x"></i> Exportar a csv
 </button>
 
 <div class="modal" tabindex="-1" role="dialog" id="exampleModal2">
@@ -114,12 +149,12 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
@@ -142,12 +177,12 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="SaleDV()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
@@ -171,12 +206,12 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="sale1()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
@@ -200,12 +235,12 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="sale2()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
@@ -229,12 +264,12 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="sale3()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
@@ -258,23 +293,23 @@
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
-    
+
          <input type="text" id="txtReportCsv" style="display:none" value="sale4()" name="tabla">
          <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
-      
+
     </div>
   </div>
 </div>
 
   <div class="row">
     <div class="col-md-12 mx-auto">
-    
+
       <div class="card mt-2 p-4">
-      
+
       <table class="table">
-      
+
           <table id="list" class='display' cellspacing='0' width='100%'>
             <thead class="thead-dark">
               <tr>
@@ -344,7 +379,7 @@
       </div>
     </div>
   </div>
- 
+
 
 
 </body>

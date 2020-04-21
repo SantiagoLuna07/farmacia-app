@@ -121,67 +121,86 @@ END
 //
 DELIMITER ;
 
--- consulta1
--- SELECT * FROM pharmacydb.sales;
--- DELIMITER //
--- CREATE  PROCEDURE `consulta1`()
--- BEGIN
--- select res.client_idClient, totalcompras,gastado from (SELECT s.client_idClient,count(*) Totalcompras, SUM(totalValue) gastado
--- FROM sales s
--- GROUP BY s.client_idClient) res join clients cli on cli.idClient = res.client_idClient
--- order by res.gastado desc;
--- END//
---
--- -- CONSULTA 2
---
--- DELIMITER //
--- CREATE PROCEDURE  `consulta4`()
--- BEGIN
--- select s.saleDate, count(*) cantidad , sum(s.totalValue) total from sales s group by s.saleDate;
--- END//
--- DELIMITER ;
--- -- consulta 3
--- DELIMITER //
--- CREATE PROCEDURE  `consulta2`()
--- BEGIN
--- SELECT u.idCard, u.name, u.lastname, u.email, u.username, SUM(s.totalValue) total_sales
--- 	FROM users u JOIN sales s ON u.idUser = s.user_idUser
--- 	GROUP BY u.idUser
--- 	ORDER BY total_sales DESC;
--- END//
--- DELIMITER ;
--- -- consulta3
--- DELIMITER //
--- CREATE PROCEDURE  `consulta3`()
--- BEGIN
--- SELECT m.idMedicine, m.name, SUM(sd.cuantity) quantity_sold
--- 	FROM medicines m JOIN sale_details sd ON m.idMedicine = sd.medicine_idMedicine
---     GROUP BY m.idMedicine
---     ORDER BY quantity_sold DESC;
--- END//
--- DELIMITER ;
+consulta1
+SELECT * FROM pharmacydb.sales;
+DELIMITER //
+CREATE  PROCEDURE `consulta1`()
+BEGIN
+select res.client_idClient, totalcompras,gastado from (SELECT s.client_idClient,count(*) Totalcompras, SUM(totalValue) gastado
+FROM sales s
+GROUP BY s.client_idClient) res join clients cli on cli.idClient = res.client_idClient
+order by res.gastado desc;
+END//
 
--- DELIMITER //
--- CREATE PROCEDURE listGeneros()
--- BEGIN
--- select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
--- END//
--- DELIMITER ;
---
--- DELIMITER //
--- CREATE PROCEDURE ventaEmpleado()
--- BEGIN
--- SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
--- FROM sales s join users u on u.idUser = s.user_idUser
--- GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
--- END
--- //
--- DELIMITER ;
+-- CONSULTA 2
 
--- consultaGrafico2
--- DELIMITER //
--- CREATE PROCEDURE cantidadProductos()
--- BEGIN
--- select  name,quantity from medicines;
--- END//
--- DELIMITER ;
+DELIMITER //
+CREATE PROCEDURE  `consulta4`()
+BEGIN
+select s.saleDate, count(*) cantidad , sum(s.totalValue) total from sales s group by s.saleDate;
+END//
+DELIMITER ;
+-- consulta 3
+DELIMITER //
+CREATE PROCEDURE  `consulta2`()
+BEGIN
+SELECT u.idCard, u.name, u.lastname, u.email, u.username, SUM(s.totalValue) total_sales
+	FROM users u JOIN sales s ON u.idUser = s.user_idUser
+	GROUP BY u.idUser
+	ORDER BY total_sales DESC;
+END//
+DELIMITER ;
+-- consulta3
+DELIMITER //
+CREATE PROCEDURE  `consulta3`()
+BEGIN
+SELECT m.idMedicine, m.name, SUM(sd.cuantity) quantity_sold
+	FROM medicines m JOIN sale_details sd ON m.idMedicine = sd.medicine_idMedicine
+    GROUP BY m.idMedicine
+    ORDER BY quantity_sold DESC;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE listGeneros()
+BEGIN
+select count(case when clients.gender="Hombre" then 1 end) as Hombres, count(case when clients.gender="Mujer" then 1 end)as Mujeres from clients;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE PROCEDURE ventaEmpleado()
+BEGIN
+SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
+FROM sales s join users u on u.idUser = s.user_idUser
+GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
+END
+//
+DELIMITER ;
+
+consultaGrafico2
+DELIMITER //
+CREATE PROCEDURE cantidadProductos()
+BEGIN
+select  name,quantity from medicines;
+END//
+DELIMITER ;
+
+DELIMITER //
+CREATE  PROCEDURE `graficoConsulta3`()
+BEGIN
+SELECT m.name, sd.cuantity, m.price, ((m.price)*(sd.cuantity)) AS total FROM medicines m
+INNER JOIN sale_details sd ON sd.idSaleDetail = m.idMedicine
+GROUP BY m.name;
+
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE  PROCEDURE `graficoConsulta5`()
+BEGIN
+SELECT day(s.saleDate) AS Dia, monthname(s.saleDate) AS Mes, count(s.idSale) AS NumVentas, sum(totalValue) AS VentaTotal FROM sales s
+GROUP BY Dia ORDER BY MES ASC;
+
+END //
+DELIMITER //;

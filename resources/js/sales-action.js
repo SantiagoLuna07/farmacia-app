@@ -1,8 +1,12 @@
+var medicines = [];
+
 $(document).ready(() => {
-    loadClients();
+    // loadClients();
+
+    $('#addMedicine').click(loadMedicine);
     $('#create').click(create);
-    $('#update').click(update);
-    $('#delete').click(deletee);
+    // $('#update').click(update);
+    // $('#delete').click(deletee);
     $('#cancel').click(clean);
     read();
   });
@@ -34,13 +38,67 @@ $(document).ready(() => {
         console.error('Exception on server:', errorThrown);
       }
     });
-
-
   }
 
+  function loadMedicine() {
+    let idMedicine = $('#idMedicine').val();
+    let medicine = {};
+
+    if (idMedicine !== '') {
+      $.ajax({
+        url: 'controllers/MedicineCtrl.php',
+        method: 'POST',
+        beforeSend: function () {
+          $('#progressbarr').removeClass('no-display');
+        },
+        data: {id: idMedicine, type: 'readById'},
+        success: function (resServer) {
+          let res = JSON.parse(resServer);
+
+          if (res.status === 200) {
+            let data = JSON.parse(res.data);
+
+            for(element of data) {
+              medicine = {id: element.idMedicine, name: element.name,
+                quantity: element.quantity, price: element.price}
+            }
+            medicines.push(medicine);
+            listMedicines();
+            $('#progressbarr').addClass('no-display');
+          } else {
+            $('#progressbarr').addClass('no-display');
+            console.log('no existe');
+          }
+        },
+        error: function (jqXRH, textStatus, errorThrown) {
+          console.error('error on server: ', textStatus);
+          console.error('Exception on server:', errorThrown);
+        }
+      });
+    } else {
+      console.log('no');
+    }
+  }
+
+  function listMedicines() {
+    console.log(medicines);
+    let list = '';
+    for (element of medicines) {
+      list += '<tr>';
+      list += `<td>${element.id}</td>`;
+      list += `<td>${element.name}</td>`;
+      list += `<td>${element.quantity}</td>`;
+      list += `<td>${element.price} $</td>`;
+      list += '<td>';
+      list += `<input type="number" id="quant" min="1" max="${element.quantity}" value="1">`;
+      list += '</td>';
+      list += '</tr>';
+    }
+    $('#medicinesList').html(list);
+  }
 
   function create() {
-    let user = {
+    let sale = {
         saleDate: $('#txtFechaVenta').val(),
         idCardClient: $('#txtCliente option:selected').val(),
         totalValue: $('#txtVenta').val(),
@@ -55,7 +113,7 @@ $(document).ready(() => {
         beforeSend: function () {
           $('#progressbarr').removeClass('no-display');
         },
-        data: user,
+        data: sale,
         success: function (resServer) {
            console.log(resServer);
           let res = JSON.parse(resServer);
@@ -75,8 +133,8 @@ $(document).ready(() => {
         }
       });
     }else{
-      toastr.info('Verifique los datos ingresados','ADVERTENCIA');    }
-
+      toastr.info('Verifique los datos ingresados','ADVERTENCIA');
+    }
   }
 
 

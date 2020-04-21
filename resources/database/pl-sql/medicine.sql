@@ -77,7 +77,7 @@ DELIMITER //
 CREATE PROCEDURE read_by_id_medicine(v_idMedicine INT)
 BEGIN
 SELECT m.idMedicine, m.name, m.description, m.expirationDate, m.quantity, m.fabricationDate,
-  m.price, l.name, u.username FROM medicines m
+  m.price, l.name AS lab, u.username FROM medicines m
   JOIN laboratories l ON m.laboratory_idlaboratory = l.idlaboratory
   JOIN users u ON m.user_idUser = u.idUser
   WHERE m.idMedicine= v_idMedicine;
@@ -98,4 +98,3 @@ CREATE PROCEDURE cantidadProductos()
 BEGIN
 select  name,quantity from medicines;END//
 DELIMITER ;
-
