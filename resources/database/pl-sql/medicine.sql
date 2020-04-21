@@ -99,3 +99,4 @@ BEGIN
 select  name,quantity from medicines;END//
 DELIMITER ;
 
+

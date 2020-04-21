@@ -216,3 +216,30 @@ SELECT s.user_idUser, name,  count(*) cantidad_ventas, sum(totalValue) total
 FROM sales s join users u on u.idUser = s.user_idUser
 GROUP BY u.idUser,name,lastname order by cantidad_ventas desc;
 DELIMITER ;
+
+DELIMITER //
+CREATE  PROCEDURE `graficoConsulta3`()
+BEGIN
+SELECT m.name, sd.cuantity, m.price, ((m.price)*(sd.cuantity)) AS total FROM medicines m
+INNER JOIN sale_details sd ON sd.idSaleDetail = m.idMedicine 
+GROUP BY m.name;
+
+END //
+DELIMITER ;
+
+DELIMITER //
+CREATE  PROCEDURE `graficoConsulta5`()
+BEGIN
+SELECT day(s.saleDate) AS Dia, monthname(s.saleDate) AS Mes, count(s.idSale) AS NumVentas, sum(totalValue) AS VentaTotal FROM sales s
+GROUP BY Dia ORDER BY MES ASC;
+
+END //
+DELIMITER //;
+
+DELIMITER //
+CREATE PROCEDURE `diaSemana`()
+BEGIN
+select dayname(s.saleDate) dia, count(*) cantidad , sum(s.totalValue) total from sales s
+group by dayname(s.saleDate) ;
+END //
+DELIMITER ;

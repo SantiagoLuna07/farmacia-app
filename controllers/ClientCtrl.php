@@ -42,9 +42,21 @@
             $gdao->executeProcedure('cantidadProductos',null, 0);
             break;
 
-            case 'readGrafico4':
+     case 'readGrafico4':
               $gdao->executeProcedure('ventaEmpleado',null, 0);
               break;
+     case 'readGrafico3':
+              $gdao->executeProcedure('graficoConsulta3',null, 0);
+              break;    
+              
+              case 'readGrafico5':
+                $gdao->executeProcedure('graficoConsulta5',null, 0);
+                break;  
+                case 'readGrafico6':
+                  $gdao->executeProcedure('diaSemana',null, 0);
+                  break;                            
+
+
 
   default:
     session_destroy();
