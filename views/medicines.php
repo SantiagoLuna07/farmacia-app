@@ -18,7 +18,7 @@
    
           <form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
               <input type="text" id="txtReportM" style="display:none" value="medicine()" name="tabla">
-              <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+              <button type="submit" style="margin: 5px" class="btn btn-dark">
               <i class="fas fa-file-pdf "></i> Exportar a PDF  </button>
           </form>
           <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
@@ -36,11 +36,25 @@
       </div>
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
-      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <label >Ingrese el caracter por el cual desea separar la Informacion</label>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
          <input type="text" id="txtReportCsv" style="display:none" value="medicine()" name="tabla">
-         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
+         <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" >
          <i class="fas fa-file-csv fa-1x"></i>  Exportar a csv  </button>
        </form>
     </div>

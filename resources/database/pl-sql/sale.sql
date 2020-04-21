@@ -134,6 +134,27 @@ END//
 
 -- CONSULTA 2
 
+-- consultaGrafico2
+-- DELIMITER //
+-- CREATE PROCEDURE cantidadProductos()
+-- BEGIN
+-- select  name,quantity from medicines;
+-- END//
+-- DELIMITER ;
+
+-- consulta1
+-- SELECT * FROM pharmacydb.sales;
+DELIMITER //
+CREATE  PROCEDURE `consulta1`()
+BEGIN
+select res.client_idClient, totalcompras,gastado from (SELECT s.client_idClient,count(*) Totalcompras, SUM(totalValue) gastado
+FROM sales s
+GROUP BY s.client_idClient) res join clients cli on cli.idClient = res.client_idClient
+order by res.gastado desc;
+END//
+
+-- CONSULTA 2
+
 DELIMITER //
 CREATE PROCEDURE  `consulta4`()
 BEGIN
@@ -204,3 +225,11 @@ GROUP BY Dia ORDER BY MES ASC;
 
 END //
 DELIMITER //;
+
+DELIMITER //
+CREATE PROCEDURE `diaSemana`()
+BEGIN
+select dayname(s.saleDate) dia, count(*) cantidad , sum(s.totalValue) total from sales s
+group by dayname(s.saleDate) ;
+END //
+DELIMITER ;

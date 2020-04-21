@@ -147,7 +147,21 @@
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
@@ -158,7 +172,7 @@
     </div>
   </div>
 </div>
-<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal6">
+<button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" >
 
 <i class="fas fa-file-csv fa-1x"></i> Exportar a csv DV
 </button>
@@ -174,7 +188,21 @@
       </div>
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
-      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
 
@@ -204,7 +232,21 @@
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale1()" name="tabla">
@@ -233,7 +275,21 @@
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale2()" name="tabla">
@@ -262,7 +318,21 @@
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
       <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale3()" name="tabla">
@@ -290,8 +360,22 @@
       </div>
       <div class="modal-body">
       <form name="formCsv" method="post" target="_blank" action="./controllers/ReportCsvCtl.php">
-      <label >Ingrese el caracter por el cual desea delimitar la Informacion</label>
-           <input type="text" class="form-control" name="txtCaracter" required>
+      <label >Ingrese el caracter por el cual desea separar la Informacion</label>
+      <div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter" value=";">Delimitado por ";"
+  </label>
+</div>
+<div class="form-check">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=",">Delimitado por ","
+  </label>
+</div>
+<div class="form-check disabled">
+  <label class="form-check-label">
+    <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
+  </label>
+</div> 
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale4()" name="tabla">

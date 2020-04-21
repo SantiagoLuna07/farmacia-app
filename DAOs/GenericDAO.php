@@ -153,9 +153,14 @@
 
         $content .= "<table  >";
         $content .= "<tr>";
-        for ($i = 1; $i < count($resultKeys); $i++) {
-             $content .= "<th>" . $resultKeys[$i] . "</th>";
-        }
+       /* for ($i = 1; $i < count($resultKeys); $i++) {
+             $content .= "<th>" . $resultKeys[$i] . "</th>";*/
+         $content .= "<th>Cedula</th>";
+         $content .= "<th>Nombre</th>";
+         $content .= "<th>Apellidos</th>";
+         $content .= "<th>Correo Electronico</th>";
+         $content .= "<th>Empleado</th>";
+       /* }*/
 
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
@@ -224,16 +229,18 @@
 
         $content .= "<table >";
         $content .= "<tr >";
-        for ($i = 1; $i < count($resultKeys); $i++) {
+      /*  for ($i = 1; $i < count($resultKeys); $i++) {
             // print_r($resultKeys[$i]);
             $content .= "<th>" . $resultKeys[$i] . "</th>";
-        }
-        // $content .= "<th>Codigo</th>";
-        // $content .= "<th>Nombre</th>";
-        // $content .= "<th>Apellido</th>";
-        // $content .= "<th>Cedula</th>";
-        // $content .= "<th>Edad</th>";
-        // $content .= "<th>Semestre</th>";
+        }*/
+        $content .= "<th>Nombre Medicamento</th>";
+        $content .= "<th>Descripcion</th>";
+        $content .= "<th>Fecha Expiracion</th>";
+        $content .= "<th>Cantidad</th>";
+        $content .= "<th>Fecha Fabricacion</th>";
+        $content .= "<th>Precio</th>";
+        $content .= "<th>Laboratorio</th>";
+        $content .= "<th>Empleado</th>";
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
             $aux = $result[$i];
@@ -310,10 +317,16 @@
 
         $content .= "<table '>";
         $content .= "<tr >";
-        for ($i = 1; $i < count($resultKeys); $i++) {
+      /*  for ($i = 1; $i < count($resultKeys); $i++) {
 
             $content .= "<th>" . $resultKeys[$i] . "</th>";
-        }
+        }*/
+        $content .= "<th>Nombre</th>";
+        $content .= "<th>Apellidos</th>";
+        $content .= "<th>Cedula</th>";
+        $content .= "<th>Genero</th>";
+        $content .= "<th>Fecha Nacimiento</th>";
+        
 
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
@@ -371,10 +384,16 @@
 
         $content .= "<table '>";
         $content .= "<tr >";
-        for ($i = 1; $i < count($resultKeys); $i++) {
+      /*  for ($i = 1; $i < count($resultKeys); $i++) {
 
             $content .= "<th>" . $resultKeys[$i] . "</th>";
-        }
+        }*/
+
+        $content .= "<th>Fecha Venta</th>";
+        $content .= "<th>Valor de la Venta</th>";
+        $content .= "<th>Cliente</th>";
+        $content .= "<th>Empleado</th>";
+        
 
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {

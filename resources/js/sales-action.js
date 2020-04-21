@@ -145,7 +145,7 @@ $(document).ready(() => {
       data: {type: 'read_sales'},
       success: function(resServer) {
         let res = JSON.parse(resServer);
-        // console.log(res);
+        console.log(resServer);
         let data = JSON.parse(res.data);
 
         let list = "<thead><tr>\n\
