@@ -51,6 +51,10 @@
         $gdao->executeProcedure('read_sale_details', array($idSale), 0);
       break;
 
+      case 'delete':
+        $gdao->executeFunction('delete_sale', array($idSale), 0);
+        break;
+
     default:
       // code...
       break;

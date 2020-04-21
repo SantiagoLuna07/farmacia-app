@@ -45,7 +45,7 @@
                 $vec = $resultado->fetchAll(PDO::FETCH_ASSOC);
                 return $vec;
             }
-            
+
         } catch (PDOException $exception) {
             // Se captura el error de ejecucion SQL /
             echo ' {
