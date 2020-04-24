@@ -1,4 +1,5 @@
 var medicines = [];
+var total = 0;
 
 $(document).ready(() => {
     // loadClients();
@@ -90,11 +91,18 @@ $(document).ready(() => {
       list += `<td>${element.quantity}</td>`;
       list += `<td>${element.price} $</td>`;
       list += '<td>';
-      list += `<input type="number" id="quant" min="1" max="${element.quantity}" value="1">`;
+      list += `<input type="number" id="quant" min="1" max="${element.quantity}"
+        onchange="addMedTotal(value)" value="1">`;
       list += '</td>';
       list += '</tr>';
     }
+    total = (total) + parseInt(element.price);
+    $('#total').val(total);
     $('#medicinesList').html(list);
+  }
+
+  function addMedTotal(value) {
+    console.log(value);
   }
 
   function create() {

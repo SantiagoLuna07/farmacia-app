@@ -144,7 +144,7 @@
 
        $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Usuarios</h3>";
-        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                                 <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -211,7 +211,7 @@
         $content .= "<h3 style='text-align:center';>Reporte Medicamentos</h3>";
 
         $content .='<link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet" type="text/css">';
-        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
         $content .= "<page_header>
                     <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
                 </page_header>";
@@ -297,7 +297,7 @@
         $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Clientes</h3>";
 
-      //   $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -326,7 +326,7 @@
         $content .= "<th>Cedula</th>";
         $content .= "<th>Genero</th>";
         $content .= "<th>Fecha Nacimiento</th>";
-        
+
 
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
@@ -373,7 +373,7 @@
         $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Ventas</h3>";
 
-        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -393,7 +393,7 @@
         $content .= "<th>Valor de la Venta</th>";
         $content .= "<th>Cliente</th>";
         $content .= "<th>Empleado</th>";
-        
+
 
         $content .= "</tr>";
         for ($i = 0; $i < count($result); $i++) {
@@ -440,7 +440,7 @@
         $content .= "<h1 style='text-align:center';>FARMACIA</h1>";
        $content .= "<h3 style='text-align:center';>Reporte Detalle Ventas</h3>";
 
-        // $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
+        $content .= '<link href="../resources/css/tabla.css" type="text/css" rel="stylesheet">';
 
         $content .= "<page_header>
                      <div ><label class='logo'><img src='../resources/imgs/logo.png'></label></div>
@@ -548,7 +548,7 @@
 
     }
 
-   
+
     public function crearReporteDetalleVenta()
     {
         // $sql = "SELECT * FROM " . $tabla;

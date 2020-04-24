@@ -53,6 +53,15 @@
                   <tbody id="medicinesList">
                   </tbody>
                 </table>
+                <hr>
+                <div class="row">
+                  <div class="col-md-6">
+                    <label for="">Total</label>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="text" id="total" value="0" disabled>
+                  </div>
+                </div>
                </div>
               <!--<div class="col-md-6">
                 <div class="form-group">
@@ -161,7 +170,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale()" name="tabla">
@@ -202,7 +211,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
            <input type="text" class="form-control" name="txtCaracter" required>
       </div>
 
@@ -246,7 +255,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale1()" name="tabla">
@@ -289,7 +298,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale2()" name="tabla">
@@ -332,7 +341,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale3()" name="tabla">
@@ -375,7 +384,7 @@
   <label class="form-check-label">
     <input type="radio" class="form-check-input" name="txtCaracter"value=":">Delimitado por ":"
   </label>
-</div> 
+</div>
       </div>
 
          <input type="text" id="txtReportCsv" style="display:none" value="sale4()" name="tabla">
