@@ -131,13 +131,13 @@
 
 </form>
 
-<form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
+<!--<form name="formPDF" method="post" target="_blank" action="./controllers/ReportCtl.php">
   <input type="text" id="txtReportU" style="display:none" value="saleDV()" name="tabla">
   <button type="submit" style="margin: 5px" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal">
 
 <i class="fas fa-file-pdf "></i> Exportar a PDF DV </button>
 
-</form>
+</form>-->
 
 <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal2">
 
@@ -181,6 +181,7 @@
     </div>
   </div>
 </div>
+<!--
 <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" >
 
 <i class="fas fa-file-csv fa-1x"></i> Exportar a csv DV
@@ -222,7 +223,7 @@
 
     </div>
   </div>
-</div>
+</div>-->
 
         <button style="margin: 5px" type="button" class="btn btn-dark" data-toggle="modal" data-target="#exampleModal1">
 
