@@ -107,42 +107,65 @@ function create() {
 
 
   function readGrafica () {
+    let dataProcedimiento={};
     $.ajax({
       url: 'controllers/ClientCtrl.php',
       method: 'POST',
       data: {type: 'readGrafico'},
       success: function(resServer) {
-        let res = JSON.parse(resServer);
-       //  console.log(res);
-        let info = JSON.parse(res.data);
-     //   console.log(res.data);    
-        if(info.length>0){
+        const res = JSON.parse(resServer);
+        dataProcedimiento= JSON.parse(res.data);
+        const info =organizarRespuesta();
+        grafica(info);
 
-       
-        var chart2 = c3.generate({
-          bindto: '#chart2',
-          data: {
-              columns: [
-                  ["Hombres",info[0].Hombres],                  
-                  ["Mujeres",info[0].Mujeres]             
-              ],
-              type: 'donut',
-             
-          },
-          donut: {
-              title: "Estadistica Generos"
-          }
-      });
-    }
-
-  
-  
       },
       error: function (jqXRH, textStatus, errorThrown) {
         console.error('error on server: ', textStatus);
         console.error('Exception on server:', errorThrown);
       }
     });
+
+    function organizarRespuesta(){
+      let datos=[];
+      let hombre=[];
+      let mujer=[];
+    //  console.log(dataProcedimiento);
+for(var j in dataProcedimiento){
+  mujer.push(dataProcedimiento[j].Mujeres);
+  hombre.push(dataProcedimiento[j].Hombres);
+  
+ // console.log(name+":"+cantidad);
+ /* console.log(hombre);
+  console.log(mujer);*/
+}
+
+    for(let i=0; i<dataProcedimiento.length; i++){    
+     /* datos.push([nombre[i]+":"+cantidad[i],cantidad[i]]);
+      let columna=[dataProcedimiento[i].name,dataProcedimiento[i].quantity];
+       datos.push(columna);
+       
+     //  console.log(""+[i]);
+       console.log(columna);*/
+      datos.push(["Mujeres:"+mujer[i],mujer],["Hombres:"+hombre[i],hombre[i]]);
+       console.log(datos);
+    }
+    return datos;
+  }
+
+
+function grafica(datos){
+  var chart2 = c3.generate({
+    bindto: '#chart2',
+    data: {
+        columns:datos,
+        type: 'donut',
+       
+    },
+    donut: {
+        title: "Estadistica Generos"
+    }
+});
+}
   }
 
 /*
@@ -198,7 +221,7 @@ for(var j in dataProcedimiento){
      //  console.log(""+[i]);
        console.log(columna);*/
       datos.push([nombre[i]+":"+cantidad[i],cantidad[i]]);
-       
+     //  console.log(datos);
     }
     return datos;
   }
@@ -253,9 +276,9 @@ function organziar(){
     cantidad.push(dataProcedimiento2[k].cantidad_ventas);
     nombre.push(dataProcedimiento2[k].name);
     total.push(dataProcedimiento2[k].total);
-    console.log(cantidad);
+   /* console.log(cantidad);
     console.log(nombre);
-    console.log(total);
+    console.log(total);*/
   }
 
   for(let i=0; i<dataProcedimiento2.length; i++){  
@@ -264,7 +287,7 @@ function organziar(){
      //console.log(cantidad);
      
    //  console.log(""+[i]);
-     console.log(datos);
+   //  console.log(datos);
   }
   return datos;
 }
