@@ -245,12 +245,26 @@ for(var j in dataProcedimiento){
 
 function organziar(){
   let datos=[];
-  for(let i=0; i<dataProcedimiento2.length; i++){    
-    let columna=[dataProcedimiento2[i].name,dataProcedimiento2[i].cantidad_ventas,dataProcedimiento2[i].total];
-     datos.push(columna);
+  let cantidad=[];
+  let nombre=[];
+  let total=[];
+
+  for(var k in dataProcedimiento2){
+    cantidad.push(dataProcedimiento2[k].cantidad_ventas);
+    nombre.push(dataProcedimiento2[k].name);
+    total.push(dataProcedimiento2[k].total);
+    console.log(cantidad);
+    console.log(nombre);
+    console.log(total);
+  }
+
+  for(let i=0; i<dataProcedimiento2.length; i++){  
+    //let columna=[dataProcedimiento2[i].name,dataProcedimiento2[i].cantidad_ventas,dataProcedimiento2[i].total];
+     datos.push(["cantidad de ventas de "+nombre[i]+" son "+cantidad[i],cantidad[i]+" y un total de "+total[i],total[i]]);
+     //console.log(cantidad);
      
    //  console.log(""+[i]);
-     //console.log(columna);
+     console.log(datos);
   }
   return datos;
 }
@@ -261,8 +275,9 @@ function llenarGrafico(datos){
     bindto: '#chart4',
     data: {
         columns: datos,
-      },
-      type: 'spline'
+        type: 'bar',
+      },      
+      
       });
 }
 
@@ -441,7 +456,7 @@ function organziar(){
   
   for(let i=0; i<dataProcedimiento4.length; i++){    
    /* let columna=[dataProcedimiento4[i].Dia,dataProcedimiento4[i].Mes,dataProcedimiento4[i].NumVentas,dataProcedimiento4[i].VentaTotal];*/
-  datos.push(["la cantidad de ventas son: "+cantidad[i]+" en el dia "+dataProcedimiento4[i].dia,dataProcedimiento4[i].cantidad,dataProcedimiento4[i].total]);
+  datos.push(["la cantidad de ventas fueron: "+cantidad[i]+" en el dia "+dataProcedimiento4[i].dia,dataProcedimiento4[i].cantidad,dataProcedimiento4[i].total]);
    //  datos.push(columna);
      
     // console.log(""+[i]);
